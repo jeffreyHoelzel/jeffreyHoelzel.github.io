@@ -1,0 +1,25 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "esbuild src/main.tsx --bundle --outfile=public/app.js --loader:.ts=ts --loader:.tsx=tsx --servedir=public --serve=0.0.0.0:3000",
+    "build": "esbuild src/main.tsx --bundle --minify --sourcemap --outdir=dist --loader:.ts=ts --loader:.tsx=tsx", 
+    "preview": "npx serve dist", 
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "esbuild": "^0.25.9",
+    "typescript": "^5.9.2"
+  }
+}

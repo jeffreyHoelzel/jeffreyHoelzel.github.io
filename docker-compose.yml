@@ -1,0 +1,27 @@
+services:
+  server:
+    container_name: server
+    build:
+      context: ./server
+      target: dev
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./server:/app
+    environment:
+      CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
+
+  client:
+    container_name: client
+    build:
+      context: ./client
+      target: dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    stdin_open: true
+    tty: true
+    depends_on:
+      - server
