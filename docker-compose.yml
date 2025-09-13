@@ -4,18 +4,24 @@ services:
     build:
       context: ./server
       target: dev
+    expose:
+      - "5000"
     ports:
       - "5000:5000"
     volumes:
       - ./server:/app
     environment:
-      CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
+      CORS_ORIGINS: http://localhost:8080,http://127.0.0.1:8080
+    networks:
+      - portfolio_net
 
   client:
     container_name: client
     build:
       context: ./client
       target: dev
+    expose:
+      - "3000"
     ports:
       - "3000:3000"
     volumes:
@@ -25,3 +31,23 @@ services:
     tty: true
     depends_on:
       - server
+    networks:
+      - portfolio_net
+
+  proxy:
+    container_name: proxy
+    image: nginx:1.29.1-alpine
+    depends_on:
+      - client
+      - server
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - portfolio_net
+
+networks:
+  portfolio_net:
+    external: true
+    driver: bridge

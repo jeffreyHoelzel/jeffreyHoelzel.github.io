@@ -8,8 +8,8 @@ const Projects: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(false);
     setError(null);
+    setLoading(true);
     fetchProjects()
       .then(setProjects)
       .catch((e) => setError(e instanceof Error ? e.message : String(e)))
@@ -18,6 +18,7 @@ const Projects: React.FC = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
+  if (!projects) return <p>No content availble...</p>;
 
   return (
     <section>
@@ -31,7 +32,7 @@ const Projects: React.FC = () => {
               {proj.images.map((img, i) => (
                 <img 
                   key={i}
-                  src={`http://localhost:5000/${img.url}`}
+                  src={img.url.startsWith("/") ? img.url : `/${img.url}`}
                   alt={img.alt ?? proj.name}
                   style={{ maxWidth: "280px", height: "auto", borderRadius: "8px" }}
                 />
