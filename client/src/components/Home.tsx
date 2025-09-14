@@ -34,8 +34,6 @@ const Home: React.FC = () => {
     actions = []
   } = content;
 
-  const isInternal = (url: string) => url.startsWith("/");
-
   const iconFor = (raw?: string) => {
     const key = (raw || "").toLowerCase();
     switch (key) {
@@ -48,33 +46,6 @@ const Home: React.FC = () => {
 
   return (
     <main>
-      <header className="siteHeader">
-        <div className="wrap">
-          <div className="navRow">
-            <div className="brand">
-              <div className="brandLogo" />
-              <span>{name}</span>
-            </div>
-
-            {actions.length > 0 && (
-            <nav aria-label="Actions" className="navLinks">
-              {actions.map((act, i) => 
-                isInternal(act.url) ? (
-                  <Link key={`${act.url}-${i}`} to={act.url} className="navLink">
-                    {act.label}
-                  </Link>
-                ) : (
-                  <a key={`${act.url}-${i}`} href={act.url} className="navLink">
-                    {act.label}
-                  </a>
-                )
-              )}
-            </nav>
-          )}
-          </div>
-        </div>
-      </header>
-
       <section className="sectionPad">
         <div className="wrap hero">
           <div>
@@ -101,21 +72,21 @@ const Home: React.FC = () => {
               ))}
             </div>
           </aside>
-
-          {summary && (
-            <section className="about sectionPad" aria-label="About">
-              <div className="wrap aboutGrid">
-                <div><h2 className="aboutTitle">About me</h2></div>
-                <p className="prose">{summary}</p>
-              </div>
-            </section>
-          )}
-
-          <footer className="footer">
-            <div className="wrap">© {new Date().getFullYear()} {name}</div>
-          </footer>
         </div>
       </section>
+
+      {summary && (
+        <section className="about sectionPad" aria-label="About">
+          <div className="wrap aboutGrid">
+            <div><h2 className="aboutTitle">About me</h2></div>
+            <p className="prose">{summary}</p>
+          </div>
+        </section>
+      )}
+
+      <footer className="footer">
+        <div className="wrap">© {new Date().getFullYear()} {name}</div>
+      </footer>
     </main>
   );
 }
