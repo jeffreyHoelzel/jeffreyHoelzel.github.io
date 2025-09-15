@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Home from "./components/Home"
+import Home from "./components/Home";
 import Projects from "./components/Projects";
 import { fetchHomepage } from "./utils/api";
 import { type HomeMetadata } from "./utils/types";
