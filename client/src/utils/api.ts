@@ -1,4 +1,4 @@
-import { type ProjectMetadata, type HomeMetadata } from "./types";
+import { type ProjectMetadata, type HomeMetadata, type ContactMetadata } from "./types";
 const API_BASE = "http://127.0.0.1:8080";
 
 export const fetchHomepage = (): Promise<HomeMetadata> => 
@@ -18,3 +18,24 @@ export const fetchProject = (slug: string): Promise<ProjectMetadata> =>
     if (!res.ok) throw new Error(`Request for project '${slug}' failed with ${res.status}`);
     return res.json();
   });
+
+export const fetchContactPage = (): Promise<ContactMetadata> => 
+  fetch(`${API_BASE}/api/contact`).then((res) => {
+    if (!res.ok) throw new Error(`Request for contact page failed with ${res.status}`);
+    return res.json();
+  });
+
+export const postContactForm = async (name: string, email: string, message: string): Promise<Response> => {
+  const res = await fetch(`${API_BASE}/api/contact`, {
+    method: "POST", 
+    headers: {"Content-Type": "application/json" }, 
+    body: JSON.stringify({
+      "name": name, 
+      "email": email, 
+      "message": message
+    })
+  });
+
+  if (!res.ok) throw new Error(`Contact form submission failed: ${res.status}`);
+  return res.json();
+}
