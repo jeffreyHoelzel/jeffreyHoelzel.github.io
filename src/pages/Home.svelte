@@ -51,40 +51,6 @@
 </script>
 
 <main>
-  <!-- Header -->
-  <header class="siteHeader">
-    <div class="wrap">
-      <div class="navRow">
-        <a href="#/" class="brand" aria-label="home">
-          <div class="brandLogo">
-            {#if avatar.url}
-              <img
-                class="brandPhoto"
-                src={avatar.url}
-                alt={avatar.alt}
-                width="36"
-                height="36"
-              />
-            {:else}
-              <div class="brandPhoto" aria-hidden="true"></div>
-            {/if}
-          </div>
-          <span class="brandName">{name}</span>
-        </a>
-
-        {#if actions.length}
-          <nav aria-label="Actions" class="navLinks">
-            {#each actions as action}
-              <a href={action.url} class="navLink">
-                {action.label}
-              </a>
-            {/each}
-          </nav>
-        {/if}
-      </div>
-    </div>
-  </header>
-
   <!-- Hero  -->
   <section class="sectionPad">
     <div class="wrap hero">
@@ -150,9 +116,4 @@
       </p>
     </div>
   </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="wrap">© 2025 {name}</div>
-  </footer>
 </main>
