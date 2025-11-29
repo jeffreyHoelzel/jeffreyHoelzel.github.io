@@ -1,5 +1,6 @@
   <script lang="ts">
     import "../styles/Home.css";
+    import { FaBars, FaTimes } from "svelte-icons/fa";
 
     const name = "Jeffrey Hoelzel Jr.";
     const avatar = {
@@ -21,6 +22,10 @@
       url: "#/resume"
     }
   ];
+
+  let navOpen = false;
+  const toggleNav = () => (navOpen = !navOpen);
+  const closeNav = () => (navOpen = false);
   </script>
   
   <!-- Header -->
@@ -44,10 +49,25 @@
           <span class="brandName">{name}</span>
         </a>
 
+        <!-- Mobile burger menu -->
+        <button
+          class="navToggle iconBtn"
+          type="button"
+          on:click={toggleNav}
+          aria-label="Toggle navigation"
+          aria-expanded={navOpen}
+        >
+          {#if navOpen}
+            <FaTimes size="22" />
+          {:else}
+            <FaBars size="22" />
+          {/if}
+        </button>
+
         {#if actions.length}
-          <nav aria-label="Actions" class="navLinks">
+          <nav aria-label="Actions" class="navLinks" class:navLinksOpen={navOpen}>
             {#each actions as action}
-              <a href={action.url} class="navLink">
+              <a href={action.url} class="navLink" on:click={closeNav}>
                 {action.label}
               </a>
             {/each}
