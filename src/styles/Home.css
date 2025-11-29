@@ -53,12 +53,15 @@ img {
   background: rgba(11, 12, 16, 0.78);
   backdrop-filter: saturate(140%) blur(10px);
   border-bottom: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+  top: 0;
+  z-index: 50;
 }
 .navRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: 64px;
+  position: relative;
 }
 .brand {
   display: flex;
@@ -90,6 +93,7 @@ img {
   display: flex;
   align-items: center;
   gap: 12px;
+  transition: opacity 0.15s ease, transform 0.15s ease;
 }
 .navLink {
   padding: 10px 12px;
@@ -100,6 +104,29 @@ img {
 .navLink:hover {
   color: var(--ink);
   background-color: color-mix(in oklab, var(--ink) 6%, transparent);
+}
+/* hamburger is hidden on desktop */
+.navToggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.navToggleBar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--ink);
+  margin-top: 3px;
+}
+
+.navToggleBar:first-child {
+  margin-top: 0;
 }
 
 /* hero grid */
@@ -241,5 +268,51 @@ img {
   }
   .navLinks, .navLink {
     padding: 8px 10px;
+  }
+}
+/* mobile styles */
+@media (max-width: 720px) {
+
+  /* show hamburger */
+  .navToggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* turn links into dropdown */
+  .navLinks {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    flex-direction: column;
+    align-items: flex-start;
+
+    background: rgba(11, 12, 16, 0.96);
+    backdrop-filter: blur(10px);
+
+    padding: 12px clamp(var(--s3), 4vw, var(--s4));
+    gap: 6px;
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+
+    border-bottom: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+  }
+
+  /* When open */
+  .navLinksOpen {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  /* Bigger tap targets */
+  .navLink {
+    padding: 10px 0;
+    width: 100%;
   }
 }
