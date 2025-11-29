@@ -1,4 +1,5 @@
   <script lang="ts">
+    import { onMount } from "svelte";
     import "../styles/Home.css";
     import { FaBars, FaTimes } from "svelte-icons/fa";
 
@@ -26,6 +27,14 @@
   let navOpen = false;
   const toggleNav = () => (navOpen = !navOpen);
   const closeNav = () => (navOpen = false);
+
+  let isMobile = false;
+  const checkScreen = () => (isMobile = window.innerWidth <= 720);
+  onMount(() => {
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  });
   </script>
   
   <!-- Header -->
@@ -51,7 +60,7 @@
 
         <!-- Mobile burger menu -->
         <button
-          class="navToggle iconBtn"
+          class="navToggle {isMobile ? 'iconBtn' : ''}"
           type="button"
           on:click={toggleNav}
           aria-label="Toggle navigation"
