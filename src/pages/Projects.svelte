@@ -11,6 +11,8 @@
     description: string;
     images: ProjectImage[];
     currentIndex: number;
+    sourceUrl?: string;
+    siteUrl?: string;
   };
 
   const BASE_URL = import.meta.env.BASE_URL;
@@ -21,6 +23,7 @@
       name: "PepSeqPred", 
       description: "A machine learning model to predict antibody epitopes from peptide sequences using deep learning techniques.",
       images: [], 
+      sourceUrl: "https://github.com/LadnerLab/PepSeqPred", 
       currentIndex: 0
     }, 
     {
@@ -33,14 +36,23 @@
       name: "ArtemiS3", 
       description: "An intelligent search tool for NASA and USGS AWS S3 buckets, enabling efficient data retrieval and exploration.", 
       images: [], 
+      sourceUrl: "https://github.com/Artemi-S3/ArtemiS3", 
       currentIndex: 0
     }, 
     {
       name: "MACH-IV Clustering", 
       description: "A clustering algorithm implementation to group MACH-IV personality assessment results for psychological studies.", 
       images: [], 
+      sourceUrl: "https://github.com/jeffreyHoelzel/mach-iv-clustering", 
+      siteUrl: "https://jeffreyhoelzel.github.io/mach-iv-clustering/", 
       currentIndex: 0
     }, 
+    {
+      name: "Cavco IT Helpdesk Chatbot", 
+      description: "An AI-powered IT helpdesk chatbot developed as an internal tool to assist Cavco employees resolve IT-related technical issues.", 
+      images: [], 
+      currentIndex: 0
+    },
     {
       name: "Campus Health Chatbot", 
       description: "An AI-powered chatbot testing platform designed to assist students with campus health inquiries and provide relevant information.", 
@@ -51,6 +63,7 @@
       name: "Louie's Ratings", 
       description: "A web application similar to RateMyProfessor that allows students to rate and review their NAU professors and view course data like previous grade distributions.", 
       images: [], 
+      sourceUrl: "https://github.com/jeffreyHoelzel/LouiesRatings", 
       currentIndex: 0
     }
   ];
@@ -128,6 +141,32 @@
                 <h2 class="projectTitle">{project.name}</h2>
                 {#if project.description}
                   <p class="projectDesc">{project.description}</p>
+
+                  {#if project.sourceUrl || project.siteUrl}
+                    <div class="projectLinks">
+                      {#if project.sourceUrl}
+                        <a
+                          href={project.sourceUrl}
+                          class="projectLink"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                        View source code
+                        </a>
+                      {/if}
+
+                      {#if project.siteUrl}
+                        <a
+                          href={project.siteUrl}
+                          class="projectLink"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Visit website
+                        </a>
+                      {/if}
+                    </div>
+                  {/if}
                 {/if}
               </div>
             </article>
