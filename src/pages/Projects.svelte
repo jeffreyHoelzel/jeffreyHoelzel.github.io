@@ -48,6 +48,12 @@
       currentIndex: 0
     }, 
     {
+      name: "Cavco IT Helpdesk Chatbot", 
+      description: "An AI-powered IT helpdesk chatbot developed as an internal tool to assist Cavco employees resolve IT-related technical issues.", 
+      images: [], 
+      currentIndex: 0
+    },
+    {
       name: "Campus Health Chatbot", 
       description: "An AI-powered chatbot testing platform designed to assist students with campus health inquiries and provide relevant information.", 
       images: [], 
