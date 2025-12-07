@@ -44,6 +44,28 @@
   color: var(--muted);
 }
 
+/* project links */
+.projectLinks {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.projectLink {
+  font-size: 0.9rem;
+  padding: 6px 11px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, var(--accent) 70%, transparent);
+  color: var(--accent);
+  text-decoration: none;
+  letter-spacing: 0.2px;
+}
+
+.projectLink:hover {
+  background: color-mix(in oklab, var(--accent) 12%, transparent);
+}
+
 /* carousel controls */
 .carouselBtn {
   position: absolute;
