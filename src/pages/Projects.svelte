@@ -17,6 +17,18 @@
 
   const BASE_URL = import.meta.env.BASE_URL;
 
+  // add new project images here
+  let artemis3Imgs: ProjectImage[] = [
+    {
+      url: BASE_URL + "ArtemiS3/ArtemiS3_Final_Poster_1-Team_14.pdf", 
+      alt: "The Fall 2025 NAU EngineeringFest ArtemiS3 capstone poster"
+    }, 
+    {
+      url: BASE_URL + "ArtemiS3/artemis3_architecture.drawio.png", 
+      alt: "Design review basic architecture diagram for ArtemiS3"
+    }
+  ];
+
   // add new projects here
   let projects: Project[] = [
     {
@@ -35,8 +47,9 @@
     {
       name: "ArtemiS3", 
       description: "An intelligent search tool for NASA and USGS AWS S3 buckets, enabling efficient data retrieval and exploration.", 
-      images: [], 
+      images: artemis3Imgs, 
       sourceUrl: "https://github.com/Artemi-S3/ArtemiS3", 
+      siteUrl: "https://www.sce.nau.edu/capstone/projects/CS/2026/ArtemiS3_F25/", 
       currentIndex: 0
     }, 
     {
@@ -85,6 +98,11 @@
     p.currentIndex = (p.currentIndex - 1 + p.images.length) % p.images.length;
     projects = [...projects];
   }
+
+  // handle image suffix
+  function isPdf(url: string): boolean {
+    return url.toLowerCase().endsWith(".pdf");
+  }
 </script>
 
 <main>
@@ -98,12 +116,31 @@
             <article class="projectCard">
               <div class="thumbWrap" aria-label={project.name}>
                 {#if currentImage(project)}
-                  <img
-                    class="projectThumb"
-                    src={currentImage(project)!.url}
-                    alt={currentImage(project)!.alt ?? `${project.name} thumbnail`}
-                    loading="lazy"
-                  />
+                  {#if isPdf(currentImage(project)!.url)}
+                    <!--- load PDF thumbnail -->
+                    <object
+                      class="projectThumb"
+                      data={currentImage(project)!.url}
+                      type="application/pdf"
+                      aria-label={currentImage(project)!.alt ?? `${project.name} thumbnail`}
+                    >
+                      <a
+                        href={currentImage(project)!.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Open {project.name} pdf
+                      </a>
+                    </object>
+                  {:else}
+                    <!-- Regular image thumbnail -->
+                    <img
+                      class="projectThumb"
+                      src={currentImage(project)!.url}
+                      alt={currentImage(project)!.alt ?? `${project.name} thumbnail`}
+                      loading="lazy"
+                    />
+                  {/if}
                 {:else}
                   <div class="projectThumb placeholder" aria-hidden="true">
                     Images coming soon!
