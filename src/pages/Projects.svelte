@@ -18,7 +18,7 @@
   const BASE_URL = import.meta.env.BASE_URL;
 
   // add new project images here
-  let artemis3Imgs: ProjectImage[] = [
+  const artemis3Imgs: ProjectImage[] = [
     {
       url: BASE_URL + "ArtemiS3/ArtemiS3_Final_Poster_1-Team_14.pdf", 
       alt: "The Fall 2025 NAU EngineeringFest ArtemiS3 capstone poster"
@@ -26,6 +26,44 @@
     {
       url: BASE_URL + "ArtemiS3/artemis3_architecture.drawio.png", 
       alt: "Design review basic architecture diagram for ArtemiS3"
+    }
+  ];
+  const machIvClusteringImgs: ProjectImage[] = [
+    {
+      url: BASE_URL + "MACH-IV_Clustering/low_mach.png", 
+      alt: "Low Machiavellianism personality traits"
+    }, 
+    {
+      url: BASE_URL + "MACH-IV_Clustering/mid_mach.png", 
+      alt: "Mid Machiavellianism personality traits"
+    }, 
+    {
+      url: BASE_URL + "MACH-IV_Clustering/high_mach.png", 
+      alt: "High Machiavellianism personality traits"
+    }, 
+    {
+      url: BASE_URL + "MACH-IV_Clustering/example_response_heatmap_k_3.png", 
+      alt: "Mode sample responses from 3 clusters using hierarchical clustering"
+    }, 
+    {
+      url: BASE_URL + "MACH-IV_Clustering/example_pca.png", 
+      alt: "Example PCA plot for three clusters"
+    }, 
+    {
+      url: BASE_URL + "MACH-IV_Clustering/dendrograms.png", 
+      alt: "Dendrograms developed using 5,000 samples locally to choose linkage method"
+    }, 
+    {
+      url: BASE_URL + "MACH-IV_Clustering/elbow_method.png", 
+      alt: "Elbow method used for picking k-clusters in K-Means"
+    }, 
+    {
+      url: BASE_URL + "MACH-IV_Clustering/gmm_metrics.png", 
+      alt: "Metrics from running GMM on dataset"
+    }, 
+    {
+      url: BASE_URL + "MACH-IV_Clustering/spectral_embedding_k_2.png", 
+      alt: "Spectral embedding using 2 clusters in spectral clustering"
     }
   ];
 
@@ -55,7 +93,7 @@
     {
       name: "MACH-IV Clustering", 
       description: "A clustering algorithm implementation to group MACH-IV personality assessment results for psychological studies.", 
-      images: [], 
+      images: machIvClusteringImgs, 
       sourceUrl: "https://github.com/jeffreyHoelzel/mach-iv-clustering", 
       siteUrl: "https://jeffreyhoelzel.github.io/mach-iv-clustering/", 
       currentIndex: 0
