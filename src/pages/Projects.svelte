@@ -28,7 +28,16 @@
       alt: "Concept architecture of using a model training on peptide serology data to predict likely reactive peptides in a novel pathogen"
     }
   ];
-  const ultraSignUpImgs: ProjectImage[] = [];
+  const ultraSignUpImgs: ProjectImage[] = [
+    {
+      url: BASE_URL + "UltraSignUp/architecture_diagram.png", 
+      alt: "UtraSignUp web scraper architecture"
+    }, 
+    {
+      url: BASE_URL + "UltraSignUp/sequence_diagram.png", 
+      alt: "UtraSignUp web scraper sequence diagram"
+    }
+  ];
   const artemis3Imgs: ProjectImage[] = [
     {
       url: BASE_URL + "ArtemiS3/ArtemiS3_Final_Poster_1-Team_14.png", 
@@ -87,7 +96,24 @@
       alt: "Jeffrey and Destiny (another intern) presenting to the Cavco C-suite"
     }
   ];
-  const campusHealthChatbotImgs: ProjectImage[] = [];
+  const campusHealthChatbotImgs: ProjectImage[] = [
+    {
+      url: BASE_URL + "CampusHealthChatbot/sample_interaction.png", 
+      alt: "A sample interaction using test chatbot C"
+    }, 
+    {
+      url: BASE_URL + "CampusHealthChatbot/start_survey.png", 
+      alt: "Some survey questions asked before focus group starts"
+    }, 
+    {
+      url: BASE_URL + "CampusHealthChatbot/chat_room_chatbot.png", 
+      alt: "A sample interaction in a chat room with 1 or people and the chatbot"
+    }, 
+    {
+      url: BASE_URL + "CampusHealthChatbot/post_chat_survey.png", 
+      alt: "Some survey questions asked after chatbot part of focus group"
+    }
+  ];
   const louiesRatingsImgs: ProjectImage[] = [
     {
       url: BASE_URL + "LouiesRatings/cover.png", 
