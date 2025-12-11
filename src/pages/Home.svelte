@@ -57,7 +57,7 @@
 
         <div class="ctaRow">
           <a href="#/projects" class="btn">View projects</a>
-          <a href="#/contact" class="btn">Contact me</a>
+          <a href="#/resume" class="btn">View resume</a>
         </div>
       </div>
 

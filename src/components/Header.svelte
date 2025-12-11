@@ -15,10 +15,6 @@
       url: "#/projects"
     }, 
     {
-      label: "Contact me", 
-      url: "#/contact"
-    }, 
-    {
       label: "View resume", 
       url: "#/resume"
     }
