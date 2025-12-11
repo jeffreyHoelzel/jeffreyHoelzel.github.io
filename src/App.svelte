@@ -6,14 +6,12 @@
 
   import Home from "./pages/Home.svelte";
   import Projects from "./pages/Projects.svelte";
-  import Contact from "./pages/Contact.svelte";
   import Resume from "./pages/Resume.svelte";
   import ComingSoon from "./pages/ComingSoon.svelte";
 
   const routes = {
     "/": Home, 
     "/projects": Projects, 
-    "/contact": Contact, 
     "/resume": Resume, 
     "*": ComingSoon
   };

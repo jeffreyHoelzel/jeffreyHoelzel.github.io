@@ -243,9 +243,55 @@ img {
 /* footer */
 .footer {
   padding-block: var(--s4);
+  border-top: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+  background: #06070b;
+}
+
+.footer .wrap {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: clamp(var(--s3), 4vw, var(--s4));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   text-align: center;
   color: var(--muted);
-  border-top: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+}
+
+/* contact links row */
+.footerContacts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  line-height: 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 12px 10px;
+  border-radius: 999px;
+  transition: color 0.12s ease, background-color 0.12s ease;
+}
+
+.footerLink:hover {
+  color: var(--ink);
+  background-color: color-mix(in oklab, var(--ink) 8%, transparent);
+}
+
+.footerCopyright {
+  font-size: 0.85rem;
+  color: var(--muted);
 }
 
 /* responsive functionality */
