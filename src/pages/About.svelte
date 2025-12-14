@@ -24,6 +24,7 @@
     caption?: string;
   };
 
+  // add or remove photos
   const photos: PhotoCard[] = [
     {
       url: BASE_URL + "about/IMG_1220.JPG", 
