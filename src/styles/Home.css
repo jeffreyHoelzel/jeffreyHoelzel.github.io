@@ -266,9 +266,11 @@ img {
 /* contact links row */
 .footerContacts {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
+  align-items: center;
   gap: 18px;
+  width: 100%;
 }
 
 .footerLink {
@@ -287,6 +289,7 @@ img {
   padding: 0px 10px;
   border-radius: 999px;
   transition: color 0.12s ease, background-color 0.12s ease;
+  white-space: nowrap;
 }
 
 .footerLink:hover {
@@ -373,8 +376,7 @@ img {
     padding: 10px 0;
     width: 100%;
   }
-}
-@media (max-width: 520px) {
+
   .footerLink {
     height: 28px;
     padding: 0 6px;
