@@ -24,39 +24,40 @@
     caption?: string;
   };
 
+  // add or remove photos
   const photos: PhotoCard[] = [
     {
-      url: BASE_URL + "about/IMG_1220.jpg", 
+      url: BASE_URL + "about/IMG_1220.JPG", 
       alt: "Me and my girlfriend taking a selfie", 
       caption: "Me and my girlfriend visiting her family in LA, CA"
     }, 
     {
-      url: BASE_URL + "about/IMG_3192.jpg", 
+      url: BASE_URL + "about/IMG_3192.JPG", 
       alt: "A view of the ocean in Portofino, Italy", 
       caption: "A scenic ocean picture I took in Portofino, Italy"
     }, 
     {
-      url: BASE_URL + "about/IMG_3743.jpg", 
+      url: BASE_URL + "about/IMG_3743.JPG", 
       alt: "Aspen's Corner in Flagstaff, AZ", 
       caption: "Part of Aspen's Corner during the Fall in Flagstaff, AZ"
     }, 
     {
-      url: BASE_URL + "about/IMG_3724.jpg", 
+      url: BASE_URL + "about/IMG_3724.JPG", 
       alt: "Hamachi Crudo", 
       caption: "One of my favorite dishes, a take on Hamachi Crudo"
     }, 
     {
-      url: BASE_URL + "about/IMG_3339.jpg", 
+      url: BASE_URL + "about/IMG_3339.JPG", 
       alt: "An area in the ruins of Pompeii", 
       caption: "One of the many pictures I took of the ruins of Pompeii near modern day Naples, Italy"
     }, 
     {
-      url: BASE_URL + "about/IMG_3831.jpg", 
+      url: BASE_URL + "about/IMG_3831.JPG", 
       alt: "Me and my girlfriend after a hike", 
       caption: "Me and my girlfriend after hiking Lockett Meadow in Flagstaff, AZ"
     }, 
     {
-      url: BASE_URL + "about/IMG_3286.jpg", 
+      url: BASE_URL + "about/IMG_3286.JPG", 
       alt: "The Colosseum from the outside", 
       caption: "I picture I took of the Colosseum while visting Rome, Italy"
     }, 
@@ -66,12 +67,12 @@
       caption: "Another one of my favorite dishes, Steak Tartare"
     }, 
     {
-      url: BASE_URL + "about/IMG_3872.jpg", 
+      url: BASE_URL + "about/IMG_3872.JPG", 
       alt: "My girlfriend excited about eating a sushi boat", 
       caption: "My girlfriend excited about finally getting a sushi boat (we love to eat)"
     }, 
     {
-      url: BASE_URL + "about/IMG_3310.jpg", 
+      url: BASE_URL + "about/IMG_3310.JPG", 
       alt: "Duomo di Sant'Andrea (Amalfi Cathedral)", 
       caption: "The Duomo di Sant'Andrea (Amalfi Cathedral) in Amalfi, Italy"
     }
