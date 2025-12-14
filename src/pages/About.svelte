@@ -26,52 +26,52 @@
 
   const photos: PhotoCard[] = [
     {
-      url: BASE_URL + "public/about/IMG_1220.jpg", 
+      url: BASE_URL + "about/IMG_1220.jpg", 
       alt: "Me and my girlfriend taking a selfie", 
       caption: "Me and my girlfriend visiting her family in LA, CA"
     }, 
     {
-      url: BASE_URL + "public/about/IMG_3192.jpg", 
+      url: BASE_URL + "about/IMG_3192.jpg", 
       alt: "A view of the ocean in Portofino, Italy", 
       caption: "A scenic ocean picture I took in Portofino, Italy"
     }, 
     {
-      url: BASE_URL + "public/about/IMG_3743.jpg", 
+      url: BASE_URL + "about/IMG_3743.jpg", 
       alt: "Aspen's Corner in Flagstaff, AZ", 
       caption: "Part of Aspen's Corner during the Fall in Flagstaff, AZ"
     }, 
     {
-      url: BASE_URL + "public/about/IMG_3724.jpg", 
+      url: BASE_URL + "about/IMG_3724.jpg", 
       alt: "Hamachi Crudo", 
       caption: "One of my favorite dishes, a take on Hamachi Crudo"
     }, 
     {
-      url: BASE_URL + "public/about/IMG_3339.jpg", 
+      url: BASE_URL + "about/IMG_3339.jpg", 
       alt: "An area in the ruins of Pompeii", 
       caption: "One of the many pictures I took of the ruins of Pompeii near modern day Naples, Italy"
     }, 
     {
-      url: BASE_URL + "public/about/IMG_3831.jpg", 
+      url: BASE_URL + "about/IMG_3831.jpg", 
       alt: "Me and my girlfriend after a hike", 
       caption: "Me and my girlfriend after hiking Lockett Meadow in Flagstaff, AZ"
     }, 
     {
-      url: BASE_URL + "public/about/IMG_3286.jpg", 
+      url: BASE_URL + "about/IMG_3286.jpg", 
       alt: "The Colosseum from the outside", 
       caption: "I picture I took of the Colosseum while visting Rome, Italy"
     }, 
     {
-      url: BASE_URL + "public/about/IMG_0046.jpg", 
+      url: BASE_URL + "about/IMG_0046.jpg", 
       alt: "Steak Tartare", 
       caption: "Another one of my favorite dishes, Steak Tartare"
     }, 
     {
-      url: BASE_URL + "public/about/IMG_3872.jpg", 
+      url: BASE_URL + "about/IMG_3872.jpg", 
       alt: "My girlfriend excited about eating a sushi boat", 
       caption: "My girlfriend excited about finally getting a sushi boat (we love to eat)"
     }, 
     {
-      url: BASE_URL + "public/about/IMG_3310.jpg", 
+      url: BASE_URL + "about/IMG_3310.jpg", 
       alt: "Duomo di Sant'Andrea (Amalfi Cathedral)", 
       caption: "The Duomo di Sant'Andrea (Amalfi Cathedral) in Amalfi, Italy"
     }
