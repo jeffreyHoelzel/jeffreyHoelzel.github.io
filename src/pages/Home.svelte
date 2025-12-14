@@ -56,6 +56,7 @@
         {/if}
 
         <div class="ctaRow">
+          <a href="#/about" class="btn">More about me</a>
           <a href="#/projects" class="btn">View projects</a>
           <a href="#/resume" class="btn">View resume</a>
         </div>
