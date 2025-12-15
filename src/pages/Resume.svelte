@@ -2,10 +2,10 @@
   import "../styles/Resume.css";
   import "../styles/Home.css";
 
-  const resumeUrl = import.meta.env.BASE_URL + "Jeffrey_Hoelzel_Jr_resume.pdf";
+  const resumeUrl = import.meta.env.BASE_URL + "Jeffrey_Hoelzel_Jr_resume_WEBSITE_ONLY.pdf";
   const title = "Resume";
   const subtitle1 = "View or download my current resume.";
-  const subtitle2 = "Last updated November 2025."
+  const subtitle2 = "Last updated December 2025."
 </script>
 
 <main>
@@ -27,7 +27,7 @@
 
           <a
             href={resumeUrl}
-            download="Jeffrey-Hoelzel-Resume.pdf"
+            download="Jeffrey-Hoelzel-Resume_WEBSITE_ONLY.pdf"
             class="btn"
           >
             Download PDF
