@@ -2,7 +2,7 @@
   import "../styles/Resume.css";
   import "../styles/Home.css";
 
-  const resumeUrl = import.meta.env.BASE_URL + "Jeffrey_Hoelzel_Jr_resume_WEBSITE_ONLY.pdf";
+  const resumeUrl = import.meta.env.BASE_URL + "Jeffrey_Hoelzel_Jr_resume.pdf";
   const title = "Resume";
   const subtitle1 = "View or download my current resume.";
   const subtitle2 = "Last updated December 2025."
