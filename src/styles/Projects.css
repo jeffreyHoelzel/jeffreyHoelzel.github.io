@@ -30,6 +30,8 @@
 .thumbWrap {
   position: relative;
   display: block;
+  touch-action: pan-y;
+  user-select: none;
 }
 
 .projectThumb {
@@ -37,6 +39,8 @@
   height: 220px;
   object-fit: contain;
   background: #0c0e14;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 .projectThumb.placeholder {
   display: grid;

@@ -193,6 +193,54 @@
     }
   ];
 
+  // enable swipe support for mobile devices
+  let swipeStartX = 0;
+  let swipeStartY = 0;
+  let swipePointerId: number | null = null;
+  let swipeCardIndex: number | null = null;
+  let swipeIsHorizontal = false;
+
+  const SWIPE_LOCK_PX = 10;
+  const SWIPE_TRIGGER_PX = 40;
+
+  function onSwipeStart(e: PointerEvent, index: number) {
+    if (projects[index]?.images?.length <= 1) return;
+
+    swipePointerId = e.pointerId;
+    swipeCardIndex = index;
+    swipeStartX = e.clientX;
+    swipeStartY = e.clientY;
+    swipeIsHorizontal = false;
+  }
+  function onSwipeMove(e: PointerEvent) {
+    if (swipePointerId === null || (e.pointerId !== swipePointerId)) return;
+
+    const dx = e.clientX - swipeStartX;
+    const dy = e.clientY - swipeStartY;
+
+    // lock as horizontal swipe once known to be horizontal
+    if (!swipeIsHorizontal) {
+      if (Math.abs(dx) > SWIPE_LOCK_PX && Math.abs(dx) > Math.abs(dy)) {
+        swipeIsHorizontal = true;
+      }
+    }
+
+    // if horizontal, prevent page from scrolling sideways
+    if (swipeIsHorizontal) {
+      e.preventDefault();
+    }
+  }
+  function onSwipeEnd(e: PointerEvent) {
+    if (swipePointerId === null || (e.pointerId !== swipePointerId)) return;
+
+    const dx = e.clientX - swipeStartX;
+
+    if (swipeIsHorizontal && swipeCardIndex !== null) {
+      if (dx <= -SWIPE_TRIGGER_PX) nextImage(swipeCardIndex);
+      if (dx >= SWIPE_TRIGGER_PX) prevImage(swipeCardIndex);
+    }
+  }
+
   // handle image rotation for projects with multiple images
   function currentImage(p: Project): ProjectImage | null {
     if (!p.images || p.images.length === 0) return null;
@@ -226,7 +274,14 @@
         {#each projects as project, i}
           {#key project.name}
             <article class="projectCard">
-              <div class="thumbWrap" aria-label={project.name}>
+              <div 
+                class="thumbWrap" 
+                aria-label={project.name}
+                on:pointerdown={(e) => onSwipeStart(e, i)}
+                on:pointermove={onSwipeMove}
+                on:pointerup={onSwipeEnd}
+                on:pointercancel={onSwipeEnd}
+              >
                 {#if currentImage(project)}
                   {#if isPdf(currentImage(project)!.url)}
                     <!--- load PDF thumbnail -->
@@ -250,6 +305,7 @@
                       class="projectThumb"
                       src={currentImage(project)!.url}
                       alt={currentImage(project)!.alt ?? `${project.name} thumbnail`}
+                      draggable="false"
                       loading="lazy"
                     />
                   {/if}
@@ -265,14 +321,16 @@
                     class="carouselBtn prevCarouselBtn"
                     type="button"
                     aria-label="Previous image"
-                    on:click={() => prevImage(i)}
+                    on:pointerdown|stopPropagation
+                    on:click|stopPropagation={() => prevImage(i)}
                   >&#10094;</button>
 
                   <button
                     class="carouselBtn nextCarouselBtn"
                     type="button"
                     aria-label="Next image"
-                    on:click={() => nextImage(i)}
+                    on:pointerdown|stopPropagation
+                    on:click|stopPropagation={() => nextImage(i)}
                   >&#10095;</button>
 
                   <div class="carouselDots" aria-hidden="true">
