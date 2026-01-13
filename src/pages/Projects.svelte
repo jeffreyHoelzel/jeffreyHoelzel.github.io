@@ -45,7 +45,7 @@
     }, 
     {
       url: BASE_URL + "ArtemiS3/artemis3_architecture.drawio.png", 
-      alt: "Design review basic architecture diagram for ArtemiS3"
+      alt: "Design review simple architecture diagram for ArtemiS3"
     }
   ];
   const machIvClusteringImgs: ProjectImage[] = [
