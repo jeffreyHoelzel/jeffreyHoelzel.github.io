@@ -5,7 +5,7 @@
   const resumeUrl = import.meta.env.BASE_URL + "Jeffrey_Hoelzel_Jr_resume.pdf";
   const title = "Resume";
   const subtitle1 = "View or download my current resume.";
-  const subtitle2 = "Last updated January 11, 2026."
+  const subtitle2 = "Last updated January 13, 2026."
 </script>
 
 <main>
