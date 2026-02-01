@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Work+Sans:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap");
 
 /* variables */
 :root {
@@ -10,6 +10,10 @@
 
   --maxw: 1120px;
   --r: 14px;
+
+  --logo-w: clamp(220px, 24wv, 320px);
+  --logo-h: clamp(64px, 6vw, 80px);
+  --logo-gap: 16px;
 
   --s1: 6px;
   --s2: 10px;
@@ -31,7 +35,7 @@ body,
   height: 100%;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Space Grotesk", "Work Sans", system-ui;
+  font-family: "Work Sans", system-ui;
   padding: 0.5rem;
 }
 
@@ -153,6 +157,27 @@ img {
   margin-top: 0;
 }
 
+.burgerMenu {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.burgerMenu:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.burgerMenu:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 /* hero grid */
 .hero {
   position: relative;
@@ -178,16 +203,17 @@ img {
 
 .heroName {
   margin: 0;
-  font-size: clamp(42px, 7wv, 80px);
+  font-size: clamp(24px, 5vw, 80px);
   line-height: 1.02;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.05em;
 }
 
 .heroTitle {
   margin: 0;
   color: #c3cad5;
-  font-size: clamp(16px, 2.4vw, 22px);
+  font-size: clamp(13px, 1.65vw, 34px);
   font-family: "Work Sans", system-ui;
+  letter-spacing: 0.05rem;
 }
 
 .heroSocials {
@@ -229,16 +255,17 @@ img {
 /* marquee */
 .marqueeStack {
   display: grid;
-  gap: 14px;
-  width: min(1100px, 100%);
+  gap: 25px;
+  width: 100%;
 }
 
 .marquee {
   position: relative;
   overflow: hidden;
-  border-radius: 16px;
-  border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
-  background: linear-gradient(180deg, #121621, #0b0c10);
+  border: none;
+  height: calc(var(--logo-h) + 20px);
+  box-sizing: border-box;
+  padding: 8px 12px;
 }
 
 .marquee::before,
@@ -250,6 +277,8 @@ img {
   width: 80px;
   pointer-events: none;
   z-index: 2;
+  align-items: center;
+  will-change: transform;
 }
 
 .marquee::before {
@@ -264,45 +293,49 @@ img {
 
 .marqueeTrack {
   display: flex;
-  gap: 16px;
-  width: max-content;
+  gap: var(--logo-gap);
+  width: 100%;
   padding: 14px;
 }
 
 .marqueeLeft {
-  animation: marqueeLeft 28s linear infinite;
+  animation: marqueeLeft 48s linear infinite;
 }
 
 .marqueeRight {
-  animation: marqueeRight 30s linear infinite;
+  animation: marqueeRight 52s linear infinite;
 }
 
 .marqueeImg {
-  width: clamp(200px, 24vw, 320px);
-  height: clamp(120px, 14wv, 180px);
-  border-radius: 12px;
-  object-fit: cover;
-  border: 1px solid color-mix(in oklab, var(--ink) 14%, transparent);
-  background: #0c0e14;
+  width: var(--logo-w);
+  height: var(--logo-h);
+  border-radius: 16px;
+  object-fit: contain;
+  object-position: center;
+  border: none;
+  background: none;
+  padding: 6px 10px;
+  box-sizing: border-box;
+  filter: saturate(0.95) contrast(0.98);
 }
 
 @keyframes marqueeLeft {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 
   to {
-    transform: translateX(-50%);
+    transform: translate3d(calc(-50% - (var(--logo-gap) / 2)), 0, 0);
   }
 }
 
 @keyframes marqueeRight {
   from {
-    transform: translateX(-50%);
+    transform: translate3d(calc(-50% - (var(--logo-gap) / 2)), 0, 0);
   }
 
   to {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -488,5 +521,23 @@ img {
     width: 14px;
     height: 14px;
     flex: 0 0 14px;
+  }
+
+  .socialPill {
+    height: 32px;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+    gap: 4px;
+    text-transform: none;
+    border: none;
+    background: none;
+  }
+
+  .socialPill :global(svg) {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+    display: block;
   }
 }

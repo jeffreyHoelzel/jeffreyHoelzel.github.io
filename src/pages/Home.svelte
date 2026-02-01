@@ -2,9 +2,11 @@
   import "../styles/Home.css";
   import { FaGithub, FaLinkedin, FaEnvelope } from "svelte-icons/fa";
 
+  const BASE_URL = import.meta.env.BASE_URL;
+
   // manually change if necessary
   const name = "Jeffrey Hoelzel Jr.";
-  const headline = "Researcher & Software Engineering Student";
+  const headline = "Software Engineering Student";
   const summary = `
     I am a Software Engineering student at Northern Arizona University graduating in May 2026, with experience spanning machine learning, data science, and full-stack development. As a HURA Researcher, I apply AI to computational biology by predicting antibody epitopes across the infectome, advancing immunological research through deep learning. I have built large-scale data mining pipelines, developed AI-powered chatbots, and designed enterprise support tools that integrate RAG workflows and ML classifiers. Across research and industry, I focus on creating practical, impactful systems at the intersection of software engineering and machine learning.
   `.trim();
@@ -27,70 +29,52 @@
     },
   ];
 
-  const iconFor = (raw?: string) => {
-    const key = (raw || "").toLowerCase();
-    if (key === "github") return FaGithub;
-    if (key === "linkedin") return FaLinkedin;
-    if (key === "email") return FaEnvelope;
-
-    return null;
-  };
-
   const carouselRow1 = [
     {
-      src:
-        import.meta.env.BASE_URL +
-        "ArtemiS3/ArtemiS3_Final_Poster_1-Team_14.png",
-      alt: "ArtemiS3 poster",
+      src: BASE_URL + "ArtemiS3/ArtemiS3_logo.png",
+      alt: "ArtemiS3 logo",
     },
     {
-      src: import.meta.env.BASE_URL + "LouiesRatings/cover.png",
-      alt: "Louies Ratings cover",
+      src: BASE_URL + "PepSeqPred/PepSeqPred_logo_white.png",
+      alt: "PepSeqPred logo",
     },
     {
-      src: import.meta.env.BASE_URL + "MACH-IV_Clustering/high_mach.png",
-      alt: "MACH-IV clustering heatmap",
+      src: BASE_URL + "UltraSignUp/UltraSignUp_logo.png",
+      alt: "UltraSignUp logo",
     },
     {
-      src: import.meta.env.BASE_URL + "PepSeqPred/arch_concept_A.png",
-      alt: "PepSeqPred architecture concept A",
+      src: BASE_URL + "MACH-IV_Clustering/MACH-IV_Clustering_logo.png",
+      alt: "MACH-IV Clustering logo",
     },
     {
-      src: import.meta.env.BASE_URL + "UltraSignUp/architecture_diagram.png",
-      alt: "UltraSignUp architecture diagram",
-    },
-    {
-      src:
-        import.meta.env.BASE_URL + "CampusHealthChatbot/chat_room_chatbot.png",
-      alt: "Campus Health Chatbot interface",
+      src: BASE_URL + "LouiesRatings/LouiesRatings_logo.png",
+      alt: "Louie's Ratings logo",
     },
   ];
   const carouselRow2 = [
     {
-      src:
-        import.meta.env.BASE_URL + "ArtemiS3/artemis3_architecture.drawio.png",
-      alt: "ArtemiS3 architecture diagram",
+      src: BASE_URL + "ArtemiS3/NASA_Worm_logo.svg.png",
+      alt: "NASA logo",
     },
     {
-      src: import.meta.env.BASE_URL + "LouiesRatings/login_demo.png",
-      alt: "Louies Ratings login demo",
+      src: BASE_URL + "ArtemiS3/USGS_logo.svg",
+      alt: "USGS logo",
     },
     {
-      src: import.meta.env.BASE_URL + "MACH-IV_Clustering/example_pca.png",
-      alt: "MACH-IV PCA plot",
+      src: BASE_URL + "UltraSignUp/NAU_SCE_logo.jpg",
+      alt: "NAU SCE logo",
     },
     {
-      src: import.meta.env.BASE_URL + "PepSeqPred/arch_concept_B.png",
-      alt: "PepSeqPred architecture concept B",
+      src: BASE_URL + "ITHelpdeskChatbot/CavcoIndustries_logo.png",
+      alt: "Cavco Industries logo",
     },
     {
-      src: import.meta.env.BASE_URL + "UltraSignUp/sequence_diagram.png",
-      alt: "UltraSignUp sequence diagram",
+      src: BASE_URL + "CampusHealthChatbot/CANIS_Lab_logo.jpg",
+      alt: "CANIS Lab logo",
     },
     {
-      src:
-        import.meta.env.BASE_URL + "CampusHealthChatbot/sample_interaction.png",
-      alt: "Campus Health Chatbot interaction sample",
+      src: BASE_URL + "PepSeqPred/PMI_logo.png",
+      alt: "PMI logo",
     },
   ];
   const carouselLoop1 = [...carouselRow1, ...carouselRow1];
@@ -128,7 +112,7 @@
           <div class="marqueeTrack marqueeLeft">
             {#each carouselLoop1 as image, index (image.src + index)}
               <img
-                class="marqeeImg"
+                class="marqueeImg"
                 src={image.src}
                 alt={image.alt}
                 loading="lazy"
@@ -141,7 +125,7 @@
           <div class="marqueeTrack marqueeRight">
             {#each carouselLoop2 as image, index (image.src + index)}
               <img
-                class="marqeeImg"
+                class="marqueeImg"
                 src={image.src}
                 alt={image.alt}
                 loading="lazy"
