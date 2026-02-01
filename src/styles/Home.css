@@ -227,6 +227,7 @@ img {
 .socialPill {
   display: inline-flex;
   align-items: center;
+  box-sizing: border-box;
   gap: 8px;
   height: 40px;
   padding: 10px 14px;
@@ -238,6 +239,9 @@ img {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: transform 0.12s ease, border-color 0.12s ease;
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .socialPill:hover {
@@ -521,6 +525,17 @@ img {
     width: 14px;
     height: 14px;
     flex: 0 0 14px;
+  }
+
+  .heroSocials {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .heroSocials .socialPill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .socialPill {
