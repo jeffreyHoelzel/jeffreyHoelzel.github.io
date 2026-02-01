@@ -5,30 +5,26 @@
   // manually change if necessary
   const name = "Jeffrey Hoelzel Jr.";
   const headline = "Researcher & Software Engineering Student";
-  const location = "Flagstaff, AZ";
   const summary = `
     I am a Software Engineering student at Northern Arizona University graduating in May 2026, with experience spanning machine learning, data science, and full-stack development. As a HURA Researcher, I apply AI to computational biology by predicting antibody epitopes across the infectome, advancing immunological research through deep learning. I have built large-scale data mining pipelines, developed AI-powered chatbots, and designed enterprise support tools that integrate RAG workflows and ML classifiers. Across research and industry, I focus on creating practical, impactful systems at the intersection of software engineering and machine learning.
   `.trim();
-  const avatar = {
-    url: import.meta.env.BASE_URL + "headshot_2025_Jeffrey-Hoelzel_3.jpg", 
-    alt: "Headshot of Jeffrey Hoelzel Jr."
-  };
+
   const socials = [
     {
-      icon: "github", 
-      label: "GitHub", 
-      url: "https://github.com/jeffreyHoelzel"
-    }, 
+      icon: FaGithub,
+      label: "GitHub",
+      url: "https://github.com/jeffreyHoelzel",
+    },
     {
-      icon: "linkedin", 
-      label: "LinkedIn", 
-      url: "https://www.linkedin.com/in/jeffrey-hoelzel-jr/"
-    }, 
+      icon: FaLinkedin,
+      label: "LinkedIn",
+      url: "https://www.linkedin.com/in/jeffrey-hoelzel-jr/",
+    },
     {
-      icon: "email", 
-      label: "Email", 
-      url: "mailto:jeffreyhoelzeljr@gmail.com"
-    }
+      icon: FaEnvelope,
+      label: "Email",
+      url: "mailto:jeffreyhoelzeljr@gmail.com",
+    },
   ];
 
   const iconFor = (raw?: string) => {
@@ -39,61 +35,121 @@
 
     return null;
   };
+
+  const carouselRow1 = [
+    {
+      src:
+        import.meta.env.BASE_URL +
+        "ArtemiS3/ArtemiS3_Final_Poster_1-Team_14.png",
+      alt: "ArtemiS3 poster",
+    },
+    {
+      src: import.meta.env.BASE_URL + "LouiesRatings/cover.png",
+      alt: "Louies Ratings cover",
+    },
+    {
+      src: import.meta.env.BASE_URL + "MACH-IV_Clustering/high_mach.png",
+      alt: "MACH-IV clustering heatmap",
+    },
+    {
+      src: import.meta.env.BASE_URL + "PepSeqPred/arch_concept_A.png",
+      alt: "PepSeqPred architecture concept A",
+    },
+    {
+      src: import.meta.env.BASE_URL + "UltraSignUp/architecture_diagram.png",
+      alt: "UltraSignUp architecture diagram",
+    },
+    {
+      src:
+        import.meta.env.BASE_URL + "CampusHealthChatbot/chat_room_chatbot.png",
+      alt: "Campus Health Chatbot interface",
+    },
+  ];
+  const carouselRow2 = [
+    {
+      src:
+        import.meta.env.BASE_URL + "ArtemiS3/artemis3_architecture.drawio.png",
+      alt: "ArtemiS3 architecture diagram",
+    },
+    {
+      src: import.meta.env.BASE_URL + "LouiesRatings/login_demo.png",
+      alt: "Louies Ratings login demo",
+    },
+    {
+      src: import.meta.env.BASE_URL + "MACH-IV_Clustering/example_pca.png",
+      alt: "MACH-IV PCA plot",
+    },
+    {
+      src: import.meta.env.BASE_URL + "PepSeqPred/arch_concept_B.png",
+      alt: "PepSeqPred architecture concept B",
+    },
+    {
+      src: import.meta.env.BASE_URL + "UltraSignUp/sequence_diagram.png",
+      alt: "UltraSignUp sequence diagram",
+    },
+    {
+      src:
+        import.meta.env.BASE_URL + "CampusHealthChatbot/sample_interaction.png",
+      alt: "Campus Health Chatbot interaction sample",
+    },
+  ];
+  const carouselLoop1 = [...carouselRow1, ...carouselRow1];
+  const carouselLoop2 = [...carouselRow2, ...carouselRow2];
 </script>
 
 <main>
   <!-- Hero  -->
   <section class="sectionPad">
-    <div class="wrap hero">
-      <div>
-        <p class="kicker">Software Engineer</p>
-        <h1 class="title">{name}</h1>
+    <div class="wrap heroStack">
+      <div class="heroHeader">
+        <h1 class="heroName">{name}</h1>
         {#if headline}
-          <p class="subtitle">{headline}</p>
-        {/if}
-        {#if location}
-          <p class="location">{location}</p>
+          <p class="heroTitle">{headline}</p>
         {/if}
 
-        <div class="ctaRow">
-          <a href="#/about" class="btn">More about me</a>
-          <a href="#/projects" class="btn">View projects</a>
-          <a href="#/resume" class="btn">View resume</a>
-        </div>
-      </div>
-
-      <aside class="avatarCard">
-        {#if avatar.url}
-          <img
-            class="avatarImg"
-            src={avatar.url}
-            alt={avatar.alt}
-            width="330"
-            height="400"
-          />
-        {:else}
-          <div class="avatarImg" aria-hidden="true"></div>
-        {/if}
-
-        <div class="socials" aria-label="Social links">
+        <div class="heroSocials" aria-label="Social links">
           {#each socials as social}
-            <a 
-              class="iconBtn"
+            <a
+              class="socialPill"
               href={social.url}
               target="_blank"
               rel="noreferrer"
               aria-label={social.label}
             >
-              {#if iconFor(social.icon)}
-                {@const Icon = iconFor(social.icon)}
-                <Icon />
-              {:else}
-                {social.label}
-              {/if}
+              <social.icon />
+              <span>{social.label.toUpperCase()}</span>
             </a>
           {/each}
         </div>
-      </aside>
+      </div>
+
+      <div class="marqueeStack" aria-label="Project highlights">
+        <div class="marquee">
+          <div class="marqueeTrack marqueeLeft">
+            {#each carouselLoop1 as image, index (image.src + index)}
+              <img
+                class="marqeeImg"
+                src={image.src}
+                alt={image.alt}
+                loading="lazy"
+              />
+            {/each}
+          </div>
+        </div>
+
+        <div class="marquee">
+          <div class="marqueeTrack marqueeRight">
+            {#each carouselLoop2 as image, index (image.src + index)}
+              <img
+                class="marqeeImg"
+                src={image.src}
+                alt={image.alt}
+                loading="lazy"
+              />
+            {/each}
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
