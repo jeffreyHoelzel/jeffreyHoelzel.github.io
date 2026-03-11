@@ -5,7 +5,7 @@
   const resumeUrl = import.meta.env.BASE_URL + "Jeffrey_Hoelzel_Jr_resume.pdf";
   const title = "Resume";
   const subtitle1 = "View or download my current resume.";
-  const subtitle2 = "Last updated January 13, 2026."
+  const subtitle2 = "Last updated March 10, 2026.";
 </script>
 
 <main>
@@ -20,7 +20,7 @@
             href={resumeUrl}
             target="_blank"
             rel="noreferrer"
-            class="btn"
+            class="socialPill"
           >
             View in another tab
           </a>
@@ -28,7 +28,7 @@
           <a
             href={resumeUrl}
             download="Jeffrey-Hoelzel-Resume_WEBSITE_ONLY.pdf"
-            class="btn"
+            class="socialPill"
           >
             Download PDF
           </a>
@@ -37,10 +37,7 @@
 
       <aside class="resumePreviewCard" aria-label="Resume preview">
         <div class="resumeFrame">
-          <iframe
-            src={resumeUrl}
-            title="Resume preview"
-            loading="lazy"
+          <iframe src={resumeUrl} title="Resume preview" loading="lazy"
           ></iframe>
         </div>
       </aside>
