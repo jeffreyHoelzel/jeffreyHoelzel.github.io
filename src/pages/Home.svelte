@@ -1,5 +1,6 @@
 <script lang="ts">
   import "../styles/Home.css";
+  import { onMount } from "svelte";
   import { FaGithub, FaLinkedin, FaEnvelope } from "svelte-icons/fa";
 
   const BASE_URL = import.meta.env.BASE_URL;
@@ -79,6 +80,28 @@
   ];
   const carouselLoop1 = [...carouselRow1, ...carouselRow1];
   const carouselLoop2 = [...carouselRow2, ...carouselRow2];
+
+  let marqueeLeftEl: HTMLDivElement | null = null;
+  let marqueeRightEl: HTMLDivElement | null = null;
+
+  const setmarqueeDistance = (el: HTMLDivElement | null) => {
+    if (!el) return;
+    const dist = Math.round(el.scrollWidth / 2);
+    el.style.setProperty("--marquee-distance", `${dist}px`);
+  };
+
+  onMount(() => {
+    const update = () => {
+      setmarqueeDistance(marqueeLeftEl);
+      setmarqueeDistance(marqueeRightEl);
+    };
+
+    const ro = new ResizeObserver(update);
+    if (marqueeLeftEl) ro.observe(marqueeLeftEl);
+    if (marqueeRightEl) ro.observe(marqueeRightEl);
+
+    return () => ro.disconnect();
+  });
 </script>
 
 <main>
@@ -109,26 +132,28 @@
 
       <div class="marqueeStack" aria-label="Project highlights">
         <div class="marquee">
-          <div class="marqueeTrack marqueeLeft">
+          <div class="marqueeTrack marqueeLeft" bind:this={marqueeLeftEl}>
             {#each carouselLoop1 as image, index (image.src + index)}
               <img
                 class="marqueeImg"
                 src={image.src}
                 alt={image.alt}
-                loading="lazy"
+                loading="eager"
+                decoding="async"
               />
             {/each}
           </div>
         </div>
 
         <div class="marquee">
-          <div class="marqueeTrack marqueeRight">
+          <div class="marqueeTrack marqueeRight" bind:this={marqueeRightEl}>
             {#each carouselLoop2 as image, index (image.src + index)}
               <img
                 class="marqueeImg"
                 src={image.src}
                 alt={image.alt}
-                loading="lazy"
+                loading="eager"
+                decoding="async"
               />
             {/each}
           </div>

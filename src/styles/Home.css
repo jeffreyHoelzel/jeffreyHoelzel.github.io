@@ -298,17 +298,21 @@ img {
 
 .marqueeTrack {
   display: flex;
-  gap: var(--logo-gap);
+  gap: 0;
   width: 100%;
   padding: 14px;
+  align-items: center;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .marqueeLeft {
-  animation: marqueeLeft 48s linear infinite;
+  animation: marqueeLeft 18s linear infinite;
 }
 
 .marqueeRight {
-  animation: marqueeRight 52s linear infinite;
+  animation: marqueeRight 22s linear infinite;
 }
 
 .marqueeImg {
@@ -330,13 +334,13 @@ img {
   }
 
   to {
-    transform: translate3d(calc(-50% - (var(--logo-gap) / 2)), 0, 0);
+    transform: translate3d(calc(-1 * var(--marquee-distance, 0px)), 0, 0);
   }
 }
 
 @keyframes marqueeRight {
   from {
-    transform: translate3d(calc(-50% - (var(--logo-gap) / 2)), 0, 0);
+    transform: translate3d(calc(-1 * var(--marquee-distance, 0px)), 0, 0);
   }
 
   to {
