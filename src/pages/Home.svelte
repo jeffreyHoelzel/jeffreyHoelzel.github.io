@@ -9,7 +9,7 @@
   const name = "Jeffrey Hoelzel Jr.";
   const headline = "Software Engineering Student";
   const summary = `
-    I am a Software Engineering student at Northern Arizona University graduating in May 2026, with experience spanning machine learning, data science, and full-stack development. As a HURA Researcher, I apply AI to computational biology by predicting antibody epitopes across the infectome, advancing immunological research through deep learning. I have built large-scale data mining pipelines, developed AI-powered chatbots, and designed enterprise support tools that integrate RAG workflows and ML classifiers. Across research and industry, I focus on creating practical, impactful systems at the intersection of software engineering and machine learning.
+    I am a Software Engineering student at Northern Arizona University graduating in May 2026, with experience spanning machine learning, data systems, and full-stack development. I currently work as a Software Engineering Intern at Altored Health, building LLM-assisted healthcare search systems that combine conversational interfaces, semantic retrieval, and backend APIs. Alongside this role, I serve as a Machine Learning Engineer at the Pathogen and Microbiome Institute under a HURA research grant, where I developed PepSeqPred, a PyTorch-based pipeline that predicts antibody epitope locations across diverse pathogens. I also work on data systems engineering at NAU SICCS, designing high throughput data pipelines and scraping infrastructure for large-scale datasets used in statistical analysis.
   `.trim();
 
   const socials = [
