@@ -11,10 +11,6 @@
 
   const actions = [
     {
-      label: "More about me",
-      url: "#/about",
-    },
-    {
       label: "View projects",
       url: "#/projects",
     },
