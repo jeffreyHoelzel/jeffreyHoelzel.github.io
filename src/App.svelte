@@ -8,16 +8,14 @@
   import Projects from "./pages/Projects.svelte";
   import Resume from "./pages/Resume.svelte";
   import ComingSoon from "./pages/ComingSoon.svelte";
-  import About from "./pages/About.svelte";
 
   const routes = {
-    "/": Home, 
-    "/about": About, 
-    "/projects": Projects, 
-    "/resume": Resume, 
-    "*": ComingSoon
+    "/": Home,
+    "/projects": Projects,
+    "/resume": Resume,
+    "*": ComingSoon,
   };
-</script> 
+</script>
 
 <Header />
 <main>
