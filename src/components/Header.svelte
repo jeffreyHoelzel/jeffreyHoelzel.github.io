@@ -14,11 +14,11 @@
   const actions = [
     {
       label: "View projects",
-      url: `${base}/projects`,
+      url: `${base}/projects/`,
     },
     {
       label: "View resume",
-      url: `${base}/resume`,
+      url: `${base}/resume/`,
     },
   ];
 
