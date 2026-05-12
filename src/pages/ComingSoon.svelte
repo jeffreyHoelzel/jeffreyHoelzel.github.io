@@ -1,5 +1,6 @@
 <script lang="ts">
   import "../styles/Home.css";
+  import { base } from "$app/paths";
 
   export let title: string = "Coming soon";
   export let subtitle: string =
@@ -7,10 +8,10 @@
   export let kicker: string = "Work in progress";
 
   // optional primary / secondary actions
-  export let primaryHref: string = "#/";
+  export let primaryHref: string = `${base}/`;
   export let primaryLabel: string = "Back to home";
 
-  export let secondaryHref: string | null = null;
+  export let secondaryHref: string | null = `${base}/projects`;
   export let secondaryLabel: string = "View projects";
 </script>
 

@@ -1,22 +1,24 @@
 <script lang="ts">
+  import { base } from "$app/paths";
   import { onMount } from "svelte";
   import "../styles/Home.css";
   import { FaBars, FaTimes } from "svelte-icons/fa";
 
   const name = "Jeffrey Hoelzel Jr.";
+  const homeHref = `${base}/`;
   const avatar = {
-    url: import.meta.env.BASE_URL + "headshot_2025_Jeffrey-Hoelzel_3.jpg",
+    url: `${base}/headshot_2025_Jeffrey-Hoelzel_3.jpg`,
     alt: "Headshot of Jeffrey Hoelzel Jr.",
   };
 
   const actions = [
     {
       label: "View projects",
-      url: "#/projects",
+      url: `${base}/projects`,
     },
     {
       label: "View resume",
-      url: "#/resume",
+      url: `${base}/resume`,
     },
   ];
 
@@ -37,7 +39,7 @@
 <header class="siteHeader">
   <div class="wrap">
     <div class="navRow">
-      <a href="#/" class="brand" aria-label="home">
+      <a href={homeHref} class="brand" aria-label="home">
         <div class="brandLogo">
           {#if avatar.url}
             <img
