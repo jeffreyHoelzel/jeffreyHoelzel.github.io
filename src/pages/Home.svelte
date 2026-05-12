@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { base } from "$app/paths";
   import "../styles/Home.css";
   import { onMount } from "svelte";
   import { FaGithub, FaLinkedin, FaEnvelope } from "svelte-icons/fa";
 
-  const BASE_URL = import.meta.env.BASE_URL;
+  const BASE_URL = `${base}/`;
 
   // manually change if necessary
   const name = "Jeffrey Hoelzel Jr.";

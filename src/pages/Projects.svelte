@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from "$app/paths";
   import "../styles/Projects.css";
 
   type ProjectImage = {
@@ -15,7 +16,7 @@
     siteUrl?: string;
   };
 
-  const BASE_URL = import.meta.env.BASE_URL;
+  const BASE_URL = `${base}/`;
 
   // add new project images here
   const pepSeqPredImgs: ProjectImage[] = [

@@ -1,8 +1,9 @@
 <script lang="ts">
+  import { base } from "$app/paths";
   import "../styles/Resume.css";
   import "../styles/Home.css";
 
-  const resumeUrl = import.meta.env.BASE_URL + "Jeffrey_Hoelzel_Jr_resume.pdf";
+  const resumeUrl = `${base}/Jeffrey_Hoelzel_Jr_resume.pdf`;
   const title = "Resume";
   const subtitle1 = "View or download my current resume.";
   const subtitle2 = "Last updated March 10, 2026.";
