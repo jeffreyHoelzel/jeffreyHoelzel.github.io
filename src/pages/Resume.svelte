@@ -6,7 +6,7 @@
   const resumeUrl = `${base}/Jeffrey_Hoelzel_Jr_resume.pdf`;
   const title = "Resume";
   const subtitle1 = "View or download my current resume.";
-  const subtitle2 = "Last updated March 10, 2026.";
+  const subtitle2 = "Last updated May 13, 2026.";
 </script>
 
 <main class="resumePage">
