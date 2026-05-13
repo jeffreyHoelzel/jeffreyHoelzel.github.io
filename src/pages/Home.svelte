@@ -8,6 +8,8 @@
     FaCode,
     FaBullseye,
     FaFileDownload,
+    FaArrowRight,
+    FaGithub,
   } from "svelte-icons/fa";
 
   const BASE_URL = `${base}/`;
@@ -32,6 +34,68 @@
   const resumeHref = `${base}/resume/`;
   const aboutPhoto = `${base}/headshot_2025_Jeffrey-Hoelzel_3.jpg`;
   const aboutTags = ["Full-Stack", "AI/ML", "Data Systems"];
+  const projectsHref = `${base}/projects/`;
+
+  type FeaturedProject = {
+    name: string;
+    categories: string;
+    subtitle: string;
+    description: string;
+    technologies: string[];
+    imageUrl: string;
+    imageAlt: string;
+    detailsUrl: string;
+    sourceUrl?: string;
+    accent: "blue" | "violet" | "teal";
+  };
+
+  const featuredProjects: FeaturedProject[] = [
+    {
+      name: "PepSeqPred",
+      categories: "AI, MACHINE LEARNING, BIOINFORMATICS",
+      subtitle: "Epitope Prediction Pipeline",
+      description:
+        "A deep-learning workflow that predicts likely antibody-reactive peptide regions and...",
+      technologies: [
+        "PyTorch",
+        "Deep Learning",
+        "Sequence Models",
+        "Data Pipelines",
+      ],
+      imageUrl: `${BASE_URL}PepSeqPred/arch_concept_A.png`,
+      imageAlt:
+        "PepSeqPred architecture concept for peptide serology model training",
+      detailsUrl: projectsHref,
+      sourceUrl: "https://github.com/LadnerLab/PepSeqPred",
+      accent: "blue",
+    },
+    {
+      name: "ArtemiS3",
+      categories: "FULL-STACK, CLOUD, SEARCH SYSTEMS",
+      subtitle: "NASA and USGS S3 Search Platform",
+      description:
+        "An intelligent retrieval interface for exploring large geospatial datasets in...",
+      technologies: ["Svelte", "FastAPI", "AWS S3", "Meilisearch"],
+      imageUrl: `${BASE_URL}ArtemiS3/ArtemiS3_Final_Poster_1-Team_14.png`,
+      imageAlt: "ArtemiS3 capstone project poster",
+      detailsUrl: projectsHref,
+      sourceUrl: "https://github.com/Artemi-S3/ArtemiS3",
+      accent: "violet",
+    },
+    {
+      name: "LesionShiftAI",
+      categories: "CV, DEEP LEARNING, DATA VISUALIZATION",
+      subtitle: "Skin lesion classification",
+      description:
+        "A research benchmark and framework for cross-dataset skin lesion classification under...",
+      technologies: ["PyTorch", "SLURM", "timm", "Next.js"],
+      imageUrl: `${BASE_URL}LesionShiftAI/val_final_pr.png`,
+      imageAlt: "ViT B16 PR AUC validation plot",
+      detailsUrl: projectsHref,
+      sourceUrl: "https://github.com/jeffreyHoelzel/LesionShiftAI",
+      accent: "teal",
+    },
+  ];
 
   const sleep = (ms: number) =>
     new Promise<void>((resolve) => {
@@ -175,7 +239,10 @@
         <div class="aboutCards">
           <article class="aboutInfoCard aboutInfoCardEducation">
             <div class="aboutInfoIconWrap">
-              <span class="aboutInfoIcon aboutInfoIconEducation" aria-hidden="true">
+              <span
+                class="aboutInfoIcon aboutInfoIconEducation"
+                aria-hidden="true"
+              >
                 <FaGraduationCap />
               </span>
             </div>
@@ -203,7 +270,10 @@
 
           <article class="aboutInfoCard aboutInfoCardMission">
             <div class="aboutInfoIconWrap">
-              <span class="aboutInfoIcon aboutInfoIconMission" aria-hidden="true">
+              <span
+                class="aboutInfoIcon aboutInfoIconMission"
+                aria-hidden="true"
+              >
                 <FaBullseye />
               </span>
             </div>
@@ -221,6 +291,76 @@
             </div>
           </article>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="featuredProjects sectionPad" aria-label="Featured projects">
+    <div class="wrap">
+      <div class="featuredProjectsHeader">
+        <h2 class="featuredProjectsTitle">Featured Projects</h2>
+        <a class="featuredProjectsViewAll" href={projectsHref}>
+          <span>View All</span>
+          <span class="featuredInlineIcon" aria-hidden="true">
+            <FaArrowRight />
+          </span>
+        </a>
+      </div>
+
+      <div class="featuredProjectsGrid">
+        {#each featuredProjects as project}
+          <article
+            class="featuredProjectCard"
+            class:featuredProjectCardBlue={project.accent === "blue"}
+            class:featuredProjectCardViolet={project.accent === "violet"}
+            class:featuredProjectCardTeal={project.accent === "teal"}
+          >
+            <div class="featuredProjectMedia">
+              <img
+                src={project.imageUrl}
+                alt={project.imageAlt}
+                class="featuredProjectImage"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="featuredProjectBody">
+              <p class="featuredProjectCategories">{project.categories}</p>
+              <h3 class="featuredProjectTitle">{project.name}</h3>
+              <p class="featuredProjectSubtitle">{project.subtitle}</p>
+              <p class="featuredProjectDescription">{project.description}</p>
+
+              <div class="featuredProjectTags">
+                {#each project.technologies as tech}
+                  <span class="featuredProjectTag">{tech}</span>
+                {/each}
+              </div>
+
+              <div class="featuredProjectActions">
+                <a class="featuredProjectPrimaryBtn" href={project.detailsUrl}>
+                  <span>View Details</span>
+                  <span class="featuredInlineIcon" aria-hidden="true">
+                    <FaArrowRight />
+                  </span>
+                </a>
+
+                {#if project.sourceUrl}
+                  <a
+                    class="featuredProjectSourceBtn"
+                    href={project.sourceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`View source code for ${project.name}`}
+                  >
+                    <span class="featuredIconOnly" aria-hidden="true">
+                      <FaGithub />
+                    </span>
+                  </a>
+                {/if}
+              </div>
+            </div>
+          </article>
+        {/each}
       </div>
     </div>
   </section>
