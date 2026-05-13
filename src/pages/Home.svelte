@@ -31,7 +31,7 @@
   const techExpertise =
     "Experience with full-stack development, applied AI/ML, APIs, and data pipeline engineering.";
   const resumeHref = `${base}/resume/`;
-  const aboutPhoto = `${base}/headshot_2025_Jeffrey-Hoelzel_3.jpg`;
+  const aboutPhoto = `${base}/homepage-about_Jeffrey-Hoelzel_05-2026.jpeg`;
   const aboutTags = ["Full-Stack", "AI/ML", "Data Systems"];
   const projectsHref = `${base}/projects/`;
   const MAX_TECHNOLOGY_TAGS = 5;
@@ -260,7 +260,10 @@
 
       <div class="featuredProjectsGrid">
         {#each featuredProjects as project}
-          {@const visibleTechnologies = project.technologies.slice(0, MAX_TECHNOLOGY_TAGS)}
+          {@const visibleTechnologies = project.technologies.slice(
+            0,
+            MAX_TECHNOLOGY_TAGS,
+          )}
           {@const hiddenTechnologyCount =
             project.technologies.length - visibleTechnologies.length}
           <article
@@ -291,7 +294,9 @@
                   <span class="featuredProjectTag">{tech}</span>
                 {/each}
                 {#if hiddenTechnologyCount > 0}
-                  <span class="featuredProjectTag">+{hiddenTechnologyCount}</span>
+                  <span class="featuredProjectTag"
+                    >+{hiddenTechnologyCount}</span
+                  >
                 {/if}
               </div>
 
