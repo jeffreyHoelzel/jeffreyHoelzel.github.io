@@ -1,177 +1,367 @@
-<script lang="ts">
+﻿<script lang="ts">
   import { base } from "$app/paths";
   import "../styles/Home.css";
   import { onMount } from "svelte";
-  import { FaGithub, FaLinkedin, FaEnvelope } from "svelte-icons/fa";
+  import {
+    FaChevronDown,
+    FaGraduationCap,
+    FaCode,
+    FaBullseye,
+    FaFileDownload,
+    FaArrowRight,
+    FaGithub,
+  } from "svelte-icons/fa";
 
   const BASE_URL = `${base}/`;
 
   // manually change if necessary
+  const intro = "Hello, I'm";
   const name = "Jeffrey Hoelzel Jr.";
-  const headline = "Software Engineering Student";
+  const roleTitles = ["Full-Stack Engineer", "AI/ML Engineer", "Data Engineer"];
+  let activeRoleIndex = 0;
+  let typedRole = roleTitles[0];
+
   const summary = `
-    I am a Software Engineering student at Northern Arizona University graduating in May 2026, with experience spanning machine learning, data systems, and full-stack development. I currently work as a Software Engineering Intern at Altored Health, building LLM-assisted healthcare search systems that combine conversational interfaces, semantic retrieval, and backend APIs. Alongside this role, I serve as a Machine Learning Engineer at the Pathogen and Microbiome Institute under a HURA research grant, where I developed PepSeqPred, a PyTorch-based pipeline that predicts antibody epitope locations across diverse pathogens. I also work on data systems engineering at NAU SICCS, designing high throughput data pipelines and scraping infrastructure for large-scale datasets used in statistical analysis.
+    I am a Software Engineer with experience across machine learning, data
+    systems, and full-stack development. I focus on building practical AI
+    products that combine strong engineering fundamentals with measurable
+    real-world impact.
   `.trim();
+  const education =
+    "Recently earned a B.S. in Software Engineering from Northern Arizona University.";
+  const techExpertise =
+    "Experience with full-stack development, applied AI/ML, APIs, and data pipeline engineering.";
+  const resumeHref = `${base}/resume/`;
+  const aboutPhoto = `${base}/headshot_2025_Jeffrey-Hoelzel_3.jpg`;
+  const aboutTags = ["Full-Stack", "AI/ML", "Data Systems"];
+  const projectsHref = `${base}/projects/`;
 
-  const socials = [
+  type FeaturedProject = {
+    name: string;
+    categories: string;
+    subtitle: string;
+    description: string;
+    technologies: string[];
+    imageUrl: string;
+    imageAlt: string;
+    detailsUrl: string;
+    sourceUrl?: string;
+    accent: "blue" | "violet" | "teal";
+  };
+
+  const featuredProjects: FeaturedProject[] = [
     {
-      icon: FaGithub,
-      label: "GitHub",
-      url: "https://github.com/jeffreyHoelzel",
+      name: "PepSeqPred",
+      categories: "AI, MACHINE LEARNING, BIOINFORMATICS",
+      subtitle: "Epitope Prediction Pipeline",
+      description:
+        "A deep-learning workflow that predicts likely antibody-reactive peptide regions and...",
+      technologies: [
+        "PyTorch",
+        "Deep Learning",
+        "Sequence Models",
+        "Data Pipelines",
+      ],
+      imageUrl: `${BASE_URL}PepSeqPred/arch_concept_A.png`,
+      imageAlt:
+        "PepSeqPred architecture concept for peptide serology model training",
+      detailsUrl: projectsHref,
+      sourceUrl: "https://github.com/LadnerLab/PepSeqPred",
+      accent: "blue",
     },
     {
-      icon: FaLinkedin,
-      label: "LinkedIn",
-      url: "https://www.linkedin.com/in/jeffrey-hoelzel-jr/",
+      name: "ArtemiS3",
+      categories: "FULL-STACK, CLOUD, SEARCH SYSTEMS",
+      subtitle: "NASA and USGS S3 Search Platform",
+      description:
+        "An intelligent retrieval interface for exploring large geospatial datasets in...",
+      technologies: ["Svelte", "FastAPI", "AWS S3", "Meilisearch"],
+      imageUrl: `${BASE_URL}ArtemiS3/ArtemiS3_architecture_SWD.drawio.png`,
+      imageAlt: "ArtemiS3 capstone project poster",
+      detailsUrl: projectsHref,
+      sourceUrl: "https://github.com/Artemi-S3/ArtemiS3",
+      accent: "violet",
     },
     {
-      icon: FaEnvelope,
-      label: "Email",
-      url: "mailto:jeffreyhoelzeljr@gmail.com",
+      name: "LesionShiftAI",
+      categories: "CV, DEEP LEARNING, DATA VISUALIZATION",
+      subtitle: "Skin lesion classification",
+      description:
+        "A research benchmark and framework for cross-dataset skin lesion classification under...",
+      technologies: ["PyTorch", "SLURM", "timm", "Next.js"],
+      imageUrl: `${BASE_URL}LesionShiftAI/val_final_pr.png`,
+      imageAlt: "ViT B16 PR AUC validation plot",
+      detailsUrl: projectsHref,
+      sourceUrl: "https://github.com/jeffreyHoelzel/LesionShiftAI",
+      accent: "teal",
     },
   ];
 
-  const carouselRow1 = [
-    {
-      src: BASE_URL + "ArtemiS3/ArtemiS3_logo.png",
-      alt: "ArtemiS3 logo",
-    },
-    {
-      src: BASE_URL + "PepSeqPred/PepSeqPred_logo_white.png",
-      alt: "PepSeqPred logo",
-    },
-    {
-      src: BASE_URL + "UltraSignUp/UltraSignUp_logo.png",
-      alt: "UltraSignUp logo",
-    },
-    {
-      src: BASE_URL + "MACH-IV_Clustering/MACH-IV_Clustering_logo.png",
-      alt: "MACH-IV Clustering logo",
-    },
-    {
-      src: BASE_URL + "LouiesRatings/LouiesRatings_logo.png",
-      alt: "Louie's Ratings logo",
-    },
-  ];
-  const carouselRow2 = [
-    {
-      src: BASE_URL + "ArtemiS3/NASA_Worm_logo.svg.png",
-      alt: "NASA logo",
-    },
-    {
-      src: BASE_URL + "ArtemiS3/USGS_logo.svg",
-      alt: "USGS logo",
-    },
-    {
-      src: BASE_URL + "UltraSignUp/NAU_SCE_logo.jpg",
-      alt: "NAU SCE logo",
-    },
-    {
-      src: BASE_URL + "ITHelpdeskChatbot/CavcoIndustries_logo.png",
-      alt: "Cavco Industries logo",
-    },
-    {
-      src: BASE_URL + "CampusHealthChatbot/CANIS_Lab_logo.jpg",
-      alt: "CANIS Lab logo",
-    },
-    {
-      src: BASE_URL + "PepSeqPred/PMI_logo.png",
-      alt: "PMI logo",
-    },
-  ];
-  const carouselLoop1 = [...carouselRow1, ...carouselRow1];
-  const carouselLoop2 = [...carouselRow2, ...carouselRow2];
+  const sleep = (ms: number) =>
+    new Promise<void>((resolve) => {
+      setTimeout(resolve, ms);
+    });
 
-  let marqueeLeftEl: HTMLDivElement | null = null;
-  let marqueeRightEl: HTMLDivElement | null = null;
-
-  const setmarqueeDistance = (el: HTMLDivElement | null) => {
-    if (!el) return;
-    const dist = Math.round(el.scrollWidth / 2);
-    el.style.setProperty("--marquee-distance", `${dist}px`);
+  const scrollToAbout = () => {
+    document.getElementById("about")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   onMount(() => {
-    const update = () => {
-      setmarqueeDistance(marqueeLeftEl);
-      setmarqueeDistance(marqueeRightEl);
+    let roleAnimationCancelled = false;
+
+    const runRoleAnimation = async () => {
+      while (!roleAnimationCancelled) {
+        const currentRole = roleTitles[activeRoleIndex];
+
+        for (let i = 1; i <= currentRole.length; i += 1) {
+          if (roleAnimationCancelled) return;
+          typedRole = currentRole.slice(0, i);
+          await sleep(55);
+        }
+
+        if (roleAnimationCancelled) return;
+        await sleep(900);
+
+        for (let i = currentRole.length - 1; i >= 0; i -= 1) {
+          if (roleAnimationCancelled) return;
+          typedRole = currentRole.slice(0, i);
+          await sleep(35);
+        }
+
+        activeRoleIndex = (activeRoleIndex + 1) % roleTitles.length;
+        await sleep(150);
+      }
     };
 
-    const ro = new ResizeObserver(update);
-    if (marqueeLeftEl) ro.observe(marqueeLeftEl);
-    if (marqueeRightEl) ro.observe(marqueeRightEl);
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
-    return () => ro.disconnect();
+    if (prefersReducedMotion) {
+      typedRole = roleTitles[0];
+    } else {
+      typedRole = "";
+      void runRoleAnimation();
+    }
+
+    return () => {
+      roleAnimationCancelled = true;
+    };
   });
 </script>
 
 <main>
   <!-- Hero  -->
-  <section class="sectionPad">
+  <section class="hero">
     <div class="wrap heroStack">
       <div class="heroHeader">
-        <h1 class="heroName">{name}</h1>
-        {#if headline}
-          <p class="heroTitle">{headline}</p>
-        {/if}
+        <h1 class="heroName">
+          <span class="heroLead">{intro}</span>
+          <span class="heroGradientName">{name}</span>
+        </h1>
 
-        <div class="heroSocials" aria-label="Social links">
-          {#each socials as social}
-            <a
-              class="socialPill"
-              href={social.url}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={social.label}
+        <div class="heroCodeFrame" role="status" aria-live="polite">
+          <div class="heroCodeTop">
+            <span class="codeDot codeDotRed"></span>
+            <span class="codeDot codeDotYellow"></span>
+            <span class="codeDot codeDotGreen"></span>
+            <span class="heroCodePath">home.js</span>
+          </div>
+
+          <p class="heroCodeTitle">
+            <span class="codeToken keyword">const </span><span
+              class="codeToken variable">role</span
+            ><span class="codeToken plain">=</span><span
+              class="codeToken string">"{typedRole}"</span
+            ><span class="typingCaret" aria-hidden="true"></span><span
+              class="codeToken semi">;</span
             >
-              <social.icon />
-              <span>{social.label.toUpperCase()}</span>
-            </a>
+          </p>
+        </div>
+
+        <div class="roleList" aria-hidden="true">
+          {#each roleTitles as role, index}
+            <span
+              class="rolePill"
+              class:rolePillActive={index === activeRoleIndex}>{role}</span
+            >
           {/each}
         </div>
-      </div>
 
-      <div class="marqueeStack" aria-label="Project highlights">
-        <div class="marquee">
-          <div class="marqueeTrack marqueeLeft" bind:this={marqueeLeftEl}>
-            {#each carouselLoop1 as image, index (image.src + index)}
-              <img
-                class="marqueeImg"
-                src={image.src}
-                alt={image.alt}
-                loading="eager"
-                decoding="async"
-              />
-            {/each}
-          </div>
-        </div>
-
-        <div class="marquee">
-          <div class="marqueeTrack marqueeRight" bind:this={marqueeRightEl}>
-            {#each carouselLoop2 as image, index (image.src + index)}
-              <img
-                class="marqueeImg"
-                src={image.src}
-                alt={image.alt}
-                loading="eager"
-                decoding="async"
-              />
-            {/each}
-          </div>
-        </div>
+        <button
+          class="scrollCue"
+          type="button"
+          aria-label="Scroll to About me section"
+          on:click={scrollToAbout}
+        >
+          <span class="scrollCueIcon" aria-hidden="true">
+            <FaChevronDown />
+          </span>
+        </button>
       </div>
     </div>
   </section>
 
   <!-- About -->
-  <section class="about sectionPad" aria-label="About">
-    <div class="wrap aboutGrid">
-      <div>
-        <h2 class="aboutTitle">About me</h2>
+  <section class="about sectionPad" id="about" aria-label="About">
+    <div class="wrap">
+      <div class="aboutIntro">
+        <span class="aboutEyebrow">Learn more</span>
+        <h2 class="aboutTitle">About Me</h2>
+        <p class="aboutSubtitle">
+          Currently building reliable, high-impact software
+        </p>
       </div>
-      <p class="prose">
-        {summary}
-      </p>
+
+      <div class="aboutGrid">
+        <article class="aboutProfileCard">
+          <div class="aboutProfileMedia">
+            <img
+              src={aboutPhoto}
+              alt="Portrait of Jeffrey Hoelzel Jr."
+              class="aboutProfileImage"
+            />
+          </div>
+          <div class="aboutProfileContent">
+            <h3 class="aboutProfileName">{name}</h3>
+            <p class="aboutProfileRole">Software, AI/ML, and Data Engineer</p>
+            <div class="aboutTagList" aria-label="Core focus areas">
+              {#each aboutTags as tag}
+                <span class="aboutTag">{tag}</span>
+              {/each}
+            </div>
+          </div>
+        </article>
+
+        <div class="aboutCards">
+          <article class="aboutInfoCard aboutInfoCardEducation">
+            <div class="aboutInfoIconWrap">
+              <span
+                class="aboutInfoIcon aboutInfoIconEducation"
+                aria-hidden="true"
+              >
+                <FaGraduationCap />
+              </span>
+            </div>
+            <div>
+              <h3 class="aboutInfoTitle">Education</h3>
+              <p class="aboutInfoText">
+                {education}
+              </p>
+            </div>
+          </article>
+
+          <article class="aboutInfoCard aboutInfoCardTech">
+            <div class="aboutInfoIconWrap">
+              <span class="aboutInfoIcon aboutInfoIconTech" aria-hidden="true">
+                <FaCode />
+              </span>
+            </div>
+            <div>
+              <h3 class="aboutInfoTitle">Technical Expertise</h3>
+              <p class="aboutInfoText">
+                {techExpertise}
+              </p>
+            </div>
+          </article>
+
+          <article class="aboutInfoCard aboutInfoCardMission">
+            <div class="aboutInfoIconWrap">
+              <span
+                class="aboutInfoIcon aboutInfoIconMission"
+                aria-hidden="true"
+              >
+                <FaBullseye />
+              </span>
+            </div>
+            <div class="aboutMissionContent">
+              <h3 class="aboutInfoTitle">Mission</h3>
+              <p class="aboutInfoText">
+                {summary}
+              </p>
+              <a class="aboutResumeButton" href={resumeHref}>
+                <span class="aboutResumeIcon" aria-hidden="true">
+                  <FaFileDownload />
+                </span>
+                <span>View Resume</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="featuredProjects sectionPad" aria-label="Featured projects">
+    <div class="wrap">
+      <div class="featuredProjectsHeader">
+        <h2 class="featuredProjectsTitle">Featured Projects</h2>
+        <a class="featuredProjectsViewAll" href={projectsHref}>
+          <span>View All</span>
+          <span class="featuredInlineIcon" aria-hidden="true">
+            <FaArrowRight />
+          </span>
+        </a>
+      </div>
+
+      <div class="featuredProjectsGrid">
+        {#each featuredProjects as project}
+          <article
+            class="featuredProjectCard"
+            class:featuredProjectCardBlue={project.accent === "blue"}
+            class:featuredProjectCardViolet={project.accent === "violet"}
+            class:featuredProjectCardTeal={project.accent === "teal"}
+          >
+            <div class="featuredProjectMedia">
+              <img
+                src={project.imageUrl}
+                alt={project.imageAlt}
+                class="featuredProjectImage"
+                loading="lazy"
+              />
+            </div>
+
+            <div class="featuredProjectBody">
+              <p class="featuredProjectCategories">{project.categories}</p>
+              <h3 class="featuredProjectTitle">{project.name}</h3>
+              <p class="featuredProjectSubtitle">{project.subtitle}</p>
+              <p class="featuredProjectDescription">{project.description}</p>
+
+              <div class="featuredProjectTags">
+                {#each project.technologies as tech}
+                  <span class="featuredProjectTag">{tech}</span>
+                {/each}
+              </div>
+
+              <div class="featuredProjectActions">
+                <a class="featuredProjectPrimaryBtn" href={project.detailsUrl}>
+                  <span>View Details</span>
+                  <span class="featuredInlineIcon" aria-hidden="true">
+                    <FaArrowRight />
+                  </span>
+                </a>
+
+                {#if project.sourceUrl}
+                  <a
+                    class="featuredProjectSourceBtn"
+                    href={project.sourceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`View source code for ${project.name}`}
+                  >
+                    <span class="featuredIconOnly" aria-hidden="true">
+                      <FaGithub />
+                    </span>
+                  </a>
+                {/if}
+              </div>
+            </div>
+          </article>
+        {/each}
+      </div>
     </div>
   </section>
 </main>
