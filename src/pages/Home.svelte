@@ -2,6 +2,7 @@
   import { base } from "$app/paths";
   import "../styles/Home.css";
   import { onMount } from "svelte";
+  import { featuredProjects } from "$lib/projects";
   import {
     FaChevronDown,
     FaGraduationCap,
@@ -11,8 +12,6 @@
     FaArrowRight,
     FaGithub,
   } from "svelte-icons/fa";
-
-  const BASE_URL = `${base}/`;
 
   // manually change if necessary
   const intro = "Hello, I'm";
@@ -36,65 +35,17 @@
   const aboutTags = ["Full-Stack", "AI/ML", "Data Systems"];
   const projectsHref = `${base}/projects/`;
 
-  type FeaturedProject = {
-    name: string;
-    categories: string;
-    subtitle: string;
-    description: string;
-    technologies: string[];
-    imageUrl: string;
-    imageAlt: string;
-    detailsUrl: string;
-    sourceUrl?: string;
-    accent: "blue" | "violet" | "teal";
-  };
+  function toAssetUrl(path: string): string {
+    return `${base}${path}`;
+  }
 
-  const featuredProjects: FeaturedProject[] = [
-    {
-      name: "PepSeqPred",
-      categories: "AI, MACHINE LEARNING, BIOINFORMATICS",
-      subtitle: "Epitope Prediction Pipeline",
-      description:
-        "A deep-learning workflow that predicts likely antibody-reactive peptide regions and...",
-      technologies: [
-        "PyTorch",
-        "Deep Learning",
-        "Sequence Models",
-        "Data Pipelines",
-      ],
-      imageUrl: `${BASE_URL}PepSeqPred/pepseqpred_apis.png`,
-      imageAlt: "Sample PepSeqPred APIs for research usage",
-      detailsUrl: projectsHref,
-      sourceUrl: "https://github.com/LadnerLab/PepSeqPred",
-      accent: "blue",
-    },
-    {
-      name: "ArtemiS3",
-      categories: "FULL-STACK, CLOUD, SEARCH SYSTEMS",
-      subtitle: "NASA and USGS S3 Search Platform",
-      description:
-        "An intelligent retrieval interface for exploring large geospatial datasets in...",
-      technologies: ["Svelte", "FastAPI", "AWS S3", "Meilisearch"],
-      imageUrl: `${BASE_URL}ArtemiS3/artemis3_landing.png`,
-      imageAlt: "ArtemiS3 landing page",
-      detailsUrl: projectsHref,
-      sourceUrl: "https://github.com/Artemi-S3/ArtemiS3",
-      accent: "violet",
-    },
-    {
-      name: "LesionShiftAI",
-      categories: "CV, DEEP LEARNING, DATA VISUALIZATION",
-      subtitle: "Skin lesion classification",
-      description:
-        "A research benchmark and framework for cross-dataset skin lesion classification under...",
-      technologies: ["PyTorch", "SLURM", "timm", "Next.js"],
-      imageUrl: `${BASE_URL}LesionShiftAI_port/lesionshiftai_webpage.png`,
-      imageAlt: "Screenshot of LesionShiftAI project webpage",
-      detailsUrl: projectsHref,
-      sourceUrl: "https://github.com/jeffreyHoelzel/LesionShiftAI",
-      accent: "teal",
-    },
-  ];
+  function getProjectDetailHref(slug: string): string {
+    return `${base}/projects/${slug}/`;
+  }
+
+  function formatFeaturedCategories(categories: string[]): string {
+    return categories.map((category) => category.toUpperCase()).join(", ");
+  }
 
   const sleep = (ms: number) =>
     new Promise<void>((resolve) => {
@@ -316,15 +267,17 @@
           >
             <div class="featuredProjectMedia">
               <img
-                src={project.imageUrl}
-                alt={project.imageAlt}
+                src={toAssetUrl(project.coverImage.src)}
+                alt={project.coverImage.alt}
                 class="featuredProjectImage"
                 loading="lazy"
               />
             </div>
 
             <div class="featuredProjectBody">
-              <p class="featuredProjectCategories">{project.categories}</p>
+              <p class="featuredProjectCategories">
+                {formatFeaturedCategories(project.categories)}
+              </p>
               <h3 class="featuredProjectTitle">{project.name}</h3>
               <p class="featuredProjectSubtitle">{project.subtitle}</p>
               <p class="featuredProjectDescription">{project.description}</p>
@@ -336,17 +289,20 @@
               </div>
 
               <div class="featuredProjectActions">
-                <a class="featuredProjectPrimaryBtn" href={project.detailsUrl}>
+                <a
+                  class="featuredProjectPrimaryBtn"
+                  href={getProjectDetailHref(project.slug)}
+                >
                   <span>View Details</span>
                   <span class="featuredInlineIcon" aria-hidden="true">
                     <FaArrowRight />
                   </span>
                 </a>
 
-                {#if project.sourceUrl}
+                {#if project.links.repoUrl}
                   <a
                     class="featuredProjectSourceBtn"
-                    href={project.sourceUrl}
+                    href={project.links.repoUrl}
                     target="_blank"
                     rel="noreferrer"
                     aria-label={`View source code for ${project.name}`}

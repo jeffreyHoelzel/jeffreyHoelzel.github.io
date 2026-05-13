@@ -379,9 +379,6 @@ object.projectImage {
     margin-bottom: 10px;
   }
 
-  .projectCategories {
-    padding: 40px 0 0;
-  }
 }
 
 @media (max-width: 420px) {
