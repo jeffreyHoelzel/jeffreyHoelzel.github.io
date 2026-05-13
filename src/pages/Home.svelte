@@ -62,9 +62,8 @@
         "Sequence Models",
         "Data Pipelines",
       ],
-      imageUrl: `${BASE_URL}PepSeqPred/arch_concept_A.png`,
-      imageAlt:
-        "PepSeqPred architecture concept for peptide serology model training",
+      imageUrl: `${BASE_URL}PepSeqPred/pepseqpred_apis.png`,
+      imageAlt: "Sample PepSeqPred APIs for research usage",
       detailsUrl: projectsHref,
       sourceUrl: "https://github.com/LadnerLab/PepSeqPred",
       accent: "blue",
@@ -76,8 +75,8 @@
       description:
         "An intelligent retrieval interface for exploring large geospatial datasets in...",
       technologies: ["Svelte", "FastAPI", "AWS S3", "Meilisearch"],
-      imageUrl: `${BASE_URL}ArtemiS3/ArtemiS3_architecture_SWD.drawio.png`,
-      imageAlt: "ArtemiS3 capstone project poster",
+      imageUrl: `${BASE_URL}ArtemiS3/artemis3_landing.png`,
+      imageAlt: "ArtemiS3 landing page",
       detailsUrl: projectsHref,
       sourceUrl: "https://github.com/Artemi-S3/ArtemiS3",
       accent: "violet",
@@ -89,8 +88,8 @@
       description:
         "A research benchmark and framework for cross-dataset skin lesion classification under...",
       technologies: ["PyTorch", "SLURM", "timm", "Next.js"],
-      imageUrl: `${BASE_URL}LesionShiftAI_port/val_final_pr.png`,
-      imageAlt: "ViT B16 PR AUC validation plot",
+      imageUrl: `${BASE_URL}LesionShiftAI_port/lesionshiftai_webpage.png`,
+      imageAlt: "Screenshot of LesionShiftAI project webpage",
       detailsUrl: projectsHref,
       sourceUrl: "https://github.com/jeffreyHoelzel/LesionShiftAI",
       accent: "teal",

@@ -714,16 +714,26 @@
 }
 
 .featuredProjectMedia {
-  padding: 14px 14px 0 14px;
+  padding: 10px 16px 0 16px;
+  height: clamp(160px, 17vw, 200px);
+  display: grid;
+  justify-items: center;
+  align-items: start;
 }
 
 .featuredProjectImage {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  display: block;
   border-radius: 14px;
   border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
   background: #0c1020;
+}
+
+img.featuredProjectImage {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .featuredProjectBody {
@@ -1027,7 +1037,9 @@
   }
 
   .featuredProjectMedia {
-    padding: 11px 11px 0 11px;
+    padding: 8px 11px 0;
+    height: clamp(140px, 42vw, 210px);
+    margin-bottom: 12px;
   }
 
   .featuredProjectBody {
@@ -1108,6 +1120,10 @@
 
   .featuredProjectCard {
     min-height: 0;
+  }
+
+  .featuredProjectMedia {
+    margin-bottom: 10px;
   }
 
   .aboutProfileCard {
