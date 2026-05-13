@@ -76,7 +76,7 @@
       description:
         "An intelligent retrieval interface for exploring large geospatial datasets in...",
       technologies: ["Svelte", "FastAPI", "AWS S3", "Meilisearch"],
-      imageUrl: `${BASE_URL}ArtemiS3/ArtemiS3_Final_Poster_1-Team_14.png`,
+      imageUrl: `${BASE_URL}ArtemiS3/ArtemiS3_architecture_SWD.drawio.png`,
       imageAlt: "ArtemiS3 capstone project poster",
       detailsUrl: projectsHref,
       sourceUrl: "https://github.com/Artemi-S3/ArtemiS3",
