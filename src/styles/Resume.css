@@ -1,40 +1,143 @@
-/* overall layout */
-.resumeLayout {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: clamp(var(--s3), 5vw, var(--s5));
-  align-items: flex-start;
+.resumePage {
+  background:
+    radial-gradient(620px 280px at 24% 0%, rgba(75, 154, 255, 0.12), transparent 70%),
+    linear-gradient(180deg, #070b14, #060910);
 }
 
-/* left side text */
+.resumeSection {
+  border-top: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+}
+
+.resumeLayout {
+  display: grid;
+  gap: clamp(16px, 2.6vw, 24px);
+  justify-items: center;
+}
+
 .resumeHeader {
   display: grid;
-  gap: 10px;
+  gap: 11px;
+  justify-items: center;
+  text-align: center;
+  width: min(760px, 100%);
+}
+
+.resumeTitle {
+  margin: 0;
+  font-size: clamp(2rem, 4.6vw, 3.8rem);
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+  background: linear-gradient(95deg, #d7e7ff 0%, #94d7ff 48%, #5ea9ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .resumeSubtitle {
   margin: 0;
-  color: #c3cad5;
-  max-width: 48ch;
+  max-width: 52ch;
+  color: color-mix(in oklab, var(--ink) 74%, #9bb7db);
+  line-height: 1.56;
 }
 
-/* right side preview card */
-.resumePreviewCard {
+.resumeUpdated {
+  width: fit-content;
+  margin: 2px auto 0;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 12px;
+  border: 1px solid color-mix(in oklab, var(--ink) 14%, transparent);
+  color: color-mix(in oklab, var(--ink) 72%, #9cc0e9);
   background: linear-gradient(180deg, #151822, #0f1118);
-  border-radius: var(--r);
-  border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
-  padding: clamp(var(--s3), 3vw, var(--s4));
+  font-size: 0.86rem;
+}
+
+.resumeActions {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  width: min(560px, 100%);
+}
+
+.resumePrimaryBtn,
+.resumeSecondaryBtn {
+  min-height: 46px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: transform 0.16s ease, filter 0.16s ease;
+}
+
+.resumePrimaryBtn {
+  border: 1px solid color-mix(in oklab, var(--accent-secondary) 40%, transparent);
+  background: linear-gradient(
+    95deg,
+    #2a72f0,
+    #4d8dff 56%,
+    color-mix(in oklab, var(--accent-secondary) 58%, #55bfff) 100%
+  );
+  color: #f6fbff;
+}
+
+.resumeSecondaryBtn {
+  border: 1px solid color-mix(in oklab, var(--ink) 20%, transparent);
+  background: color-mix(in oklab, #152645 72%, transparent);
+  color: #d6e7ff;
+}
+
+.resumePrimaryBtn:hover,
+.resumeSecondaryBtn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.07);
+}
+
+.resumeActionIcon {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.resumeActionIcon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.resumePreviewCard {
+  width: min(980px, 100%);
+  border-radius: 22px;
+  border: 1px solid color-mix(in oklab, #59b3ff 34%, transparent);
+  background: linear-gradient(180deg, rgba(7, 16, 36, 0.96), rgba(5, 12, 28, 0.98));
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 4%, transparent);
+  padding: clamp(11px, 1.5vw, 16px);
   display: grid;
   gap: 10px;
-  padding: clamp(var(--s3), 4vw, var(--s5));
 }
 
-/* PDF frame */
+.resumePreviewMeta {
+  text-align: center;
+  color: color-mix(in oklab, var(--accent) 82%, #9ccfff);
+  font-size: 0.76rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
 .resumeFrame {
-  border-radius: 10px;
+  border-radius: 14px;
   overflow: hidden;
-  background: #0c0e14;
-  border: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+  background: #0c1020;
+  border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
   aspect-ratio: 8.5 / 11;
 }
 
@@ -44,9 +147,31 @@
   border: 0;
 }
 
-/* responsive */
-@media (max-width: 900px) {
-  .resumeLayout {
+@media (max-width: 720px) {
+  .resumeActions {
     grid-template-columns: 1fr;
+    width: min(440px, 100%);
+  }
+}
+
+@media (max-width: 430px) {
+  .resumeTitle {
+    font-size: clamp(1.68rem, 10vw, 2.3rem);
+  }
+
+  .resumeSubtitle {
+    font-size: 0.94rem;
+  }
+
+  .resumeUpdated {
+    font-size: 0.78rem;
+    min-height: 30px;
+    padding: 5px 10px;
+  }
+
+  .resumePrimaryBtn,
+  .resumeSecondaryBtn {
+    min-height: 40px;
+    font-size: 0.92rem;
   }
 }
