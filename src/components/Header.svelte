@@ -1,7 +1,8 @@
 <script lang="ts">
   import { base } from "$app/paths";
   import { onMount } from "svelte";
-  import "../styles/Home.css";
+  import "../styles/Base.css";
+  import "../styles/Header.css";
   import { FaBars, FaTimes } from "svelte-icons/fa";
 
   const name = "Jeffrey Hoelzel Jr.";

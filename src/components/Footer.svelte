@@ -1,6 +1,7 @@
 ﻿<script lang="ts">
   import { base } from "$app/paths";
-  import "../styles/Home.css";
+  import "../styles/Base.css";
+  import "../styles/Footer.css";
   import { FaLink, FaGithub, FaLinkedin, FaEnvelope } from "svelte-icons/fa";
 
   const name = "Jeffrey Hoelzel Jr";
@@ -11,12 +12,6 @@
     { label: "Projects", url: `${base}/projects/` },
     { label: "Resume", url: `${base}/resume/` },
     { label: "Contact", url: "mailto:jeffreyhoelzeljr@gmail.com" },
-  ];
-
-  const skills = [
-    "Full-Stack Development",
-    "AI/ML Engineering",
-    "Data Engineering",
   ];
 
   const socials = [
@@ -47,7 +42,7 @@
   <div class="wrap footerWrap">
     <div class="footerGrid">
       <section class="footerColumn">
-        <h3 class="footerHeading">About Me</h3>
+        <h3 class="footerHeading">About</h3>
         <p class="footerAboutText">
           A passionate software engineer focused on practical AI, full-stack
           systems, and meaningful user experiences.
@@ -55,21 +50,12 @@
       </section>
 
       <section class="footerColumn">
-        <h3 class="footerHeading">Quick Links</h3>
+        <h3 class="footerHeading">Links</h3>
         <ul class="footerList">
           {#each quickLinks as link}
             <li>
               <a class="footerListLink" href={link.url}>{link.label}</a>
             </li>
-          {/each}
-        </ul>
-      </section>
-
-      <section class="footerColumn">
-        <h3 class="footerHeading">Skills</h3>
-        <ul class="footerList">
-          {#each skills as skill}
-            <li class="footerListText">{skill}</li>
           {/each}
         </ul>
       </section>
