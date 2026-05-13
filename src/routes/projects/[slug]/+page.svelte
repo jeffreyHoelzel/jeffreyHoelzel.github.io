@@ -58,7 +58,7 @@
   <section class="projectDetailAbout sectionPad">
     <div class="wrap projectDetailBodyWrap">
       <article class="projectDetailPanel">
-        <h2 class="projectDetailHeading">About This Project</h2>
+        <h2 class="projectDetailHeading">About</h2>
         <div class="projectDetailAboutText">
           {#each data.project.aboutSections as paragraph}
             <p>{paragraph}</p>
@@ -67,7 +67,7 @@
       </article>
 
       <article class="projectDetailPanel">
-        <h2 class="projectDetailHeading">Technologies Used</h2>
+        <h2 class="projectDetailHeading">Tech Stack</h2>
         <div class="projectDetailTags">
           {#each data.project.technologies as tech}
             <span class="projectDetailTag">{tech}</span>

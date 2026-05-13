@@ -1,4 +1,4 @@
-export type ProjectCategory = "AI" | "ML" | "Full-Stack" | "Data" | "Automation";
+export type ProjectCategory = "AI" | "ML" | "Full-Stack" | "Data" | "Automation" | "Computer Vision";
 
 export type ProjectAccent = "blue" | "violet" | "teal";
 
@@ -37,44 +37,42 @@ export const projectRecords: ProjectRecord[] = [
       "A deep-learning workflow that predicts antibody-reactive peptide regions from sequence data for rapid serology research.",
     categories: ["AI", "ML", "Automation"],
     technologies: [
+      "Python",
       "PyTorch",
-      "Sequence Models",
-      "Bioinformatics",
-      "Pipelines",
       "ESM-2",
-      "HPC",
+      "Sequence Models",
+      "Optuna",
       "SLURM",
+      "HPC",
+      "PyPI",
+      "Pipeline",
+      "Next.js",
     ],
     accent: "blue",
     featured: true,
     coverImage: {
-      src: "/PepSeqPred/pepseqpred_apis.png",
-      alt: "Sample PepSeqPred APIs for research usage",
+      src: "/PepSeqPred/pepseqpred_landing.png",
+      alt: "PepSeqPred landing page",
     },
     galleryImages: [
       {
-        src: "/PepSeqPred/pepseqpred_apis.png",
-        alt: "Sample PepSeqPred APIs for research usage",
+        src: "/PepSeqPred/pepseqpred_landing.png",
+        alt: "PepSeqPred landing page",
       },
       {
-        src: "/PepSeqPred/PepSeqPred_logo_white.png",
-        alt: "PepSeqPred logo on light background",
-      },
-      {
-        src: "/PepSeqPred/PepSeqPred_logo_black.png",
-        alt: "PepSeqPred logo on dark background",
-      },
-      {
-        src: "/PepSeqPred/PMI_logo.png",
-        alt: "PMI logo used in PepSeqPred context",
+        src: "/PepSeqPred/pepseqpred_pypi.png",
+        alt: "PepSeqPred PyPI webpage",
       },
     ],
     aboutSections: [
-      "PepSeqPred is a production-minded machine learning pipeline for identifying likely antibody-reactive peptide regions from protein sequence data. It focuses on practical workflows that can support rapid serology-oriented exploration and hypothesis generation.",
-      "The project combines sequence modeling, curated preprocessing, and reproducible training routines so experimental teams can run repeatable studies. Its architecture is designed to support both iterative model development and downstream analysis tasks.",
-      "From an engineering perspective, PepSeqPred demonstrates end-to-end ML system design: structured data flows, model experimentation, and scalable execution patterns that can run in HPC environments.",
+      "PepSeqPred is an open-source machine learning pipeline I developed to predict antibody epitope locations across large pathogen proteins. The project was motivated by a major bottleneck in immunological research: experimentally mapping antibody binding sites through peptide serology is slow, expensive, and difficult to scale across large pathogen proteomes. PepSeqPred addresses this by learning sequence and structural patterns associated with antibody recognition, allowing researchers to prioritize high-likelihood peptide targets before committing to costly experimental validation. The project was conducted through Northern Arizona University's Pathogen and Microbiome Institute under a HURA research grant, with mentorship from Dr. Jason Ladner and Dr. Evan Elko.",
+      "At the core of PepSeqPred is a residue-level classification pipeline that converts protein sequences into ESM-2 protein language model embeddings, then passes those embeddings through a fully-connected neural network to generate per-residue epitope probability predictions. Because ESM-2 has a sequence length limit, I implemented a sliding window embedding strategy for long proteins, averaging overlapping regions to better preserve full sequence context. The model uses peptide-level PepSeq serology reactivity measurements and projects those labels down to the residue level, enabling training on highly multiplexed data. To reduce leakage and improve generalization, the training pipeline also supports family-aware splitting, k-fold ensembling, deterministic multi-seeded experiments, and class imbalance handling.",
+      "A major focus of the project was building a reproducible research pipeline rather than a one-off model. I designed the repository to support end- to-end preprocessing, ESM-2 embedding generation, residue-level label construction, fully-connected neural network training, Optuna hyperparameter tuning, prediction, evaluation, and HPC orchestration. The developer workflow includes command-line tools for each pipeline stage, SLURM scripts for large-scale runs on NAU's Monsoon supercompute cluster, and support for distributed training across multiple GPUs. This allowed PepSeqPred to scale across large embedding corpora while maintaining experiment reproducibility, deterministic split planning, and clear artifact contracts for checkpoints, ensemble manifests, label shards, and evaluation outputs.",
+      "PepSeqPred was evaluated using metrics designed for extreme class imbalance, with precision-recall AUC prioritized over accuracy or ROC AUC because true epitope residues are rare. In validation, the model achieved a PR AUC of 0.246 compared to a random baseline of 0.070, representing a 3.53x improvement in ranking true epitopes. The model also showed improved ROC AUC, balanced accuracy, F1, and MCC compared to baseline expectations. External validation on an independent fungal dataset demonstrated that the model could maintain useful signal outside the human virome training domain, suggesting that PepSeqPred learned transferable patterns of antibody recognition rather than simply memorizing training data.",
+      "To make the work practically usable, I packaged PepSeqPred as a Python library with a lightweight inference API and bundled pretrained models. Users can install the package with pip install pepseqpred, load a pretrained predictor, and generate residue-aligned binary epitope masks from a protein sequence or FASTA file. This turns the research pipeline into a tool that can be used directly by scientists to prioritize antibody targets, guide serological assay design, and accelerate large-scale studies of infection history.",
     ],
     links: {
+      liveUrl: "https://ladnerlab.github.io/PepSeqPred/",
       repoUrl: "https://github.com/LadnerLab/PepSeqPred",
     },
   },
@@ -85,7 +83,21 @@ export const projectRecords: ProjectRecord[] = [
     description:
       "An intelligent search platform for NASA and USGS AWS S3 datasets that improves discovery and retrieval speed.",
     categories: ["AI", "Full-Stack", "Data"],
-    technologies: ["Svelte", "FastAPI", "AWS S3", "Meilisearch", "Docker"],
+    technologies: [
+      "Svelte",
+      "TypeScript",
+      "TailwindCSS",
+      "Python",
+      "FastAPI",
+      "Boto3",
+      "AWS S3",
+      "Meilisearch",
+      "PostgreSQL",
+      "Docker",
+      "Docker Compose",
+      "NGINX",
+      "Leaflet"
+    ],
     accent: "violet",
     featured: true,
     coverImage: {
@@ -98,18 +110,24 @@ export const projectRecords: ProjectRecord[] = [
         alt: "ArtemiS3 landing page",
       },
       {
-        src: "/ArtemiS3/ArtemiS3_architecture_SWD.drawio.png",
-        alt: "ArtemiS3 architecture overview",
+        src: "/ArtemiS3/artemis3_img_preview.png",
+        alt: "ArtemiS3 image preview",
       },
       {
-        src: "/ArtemiS3/ArtemiS3_logo.png",
-        alt: "ArtemiS3 project logo",
+        src: "/ArtemiS3/artemis3_geospatial.png",
+        alt: "ArtemiS3 geospatial visualization of Mars",
+      },
+      {
+        src: "/ArtemiS3/artemis3_folder_mode.png",
+        alt: "ArtemiS3 folder mode search"
       },
     ],
     aboutSections: [
-      "ArtemiS3 was built to make large-scale geospatial and scientific data in AWS S3 easier to discover. The project targets common discovery pain points where analysts know data exists but cannot locate it efficiently.",
-      "The platform combines a modern front end with API-driven search orchestration and indexing. It supports faster query iteration and clearer result exploration for technical and non-technical users.",
-      "As a capstone-grade full-stack system, ArtemiS3 highlights applied cloud integration, service composition, and search-focused product thinking for real data ecosystems.",
+      "ArtemiS3 is an intelligent search and visualization platform built for the USGS Astrogeology Science Center to make large-scale planetary mission data easier to discover, navigate, and use. NASA and USGS store massive amounts of mission data in publicly accessible AWS S3 buckets, but researchers often have to browse through folder structures manually using simple a S3 browser interface with no search and filtering capabilities. ArtemiS3 was designed to solve that discovery problem by turning static cloud storage into an interactive research tool with full-text search, metadata indexing, filtering, previews, tagging, and a more intuitive file exploration experience.",
+      "The goal of ArtemiS3 was to help scientists move from slow manual navigation to fast, targeted discovery. Instead of clicking through deeply nested folders to locate relevant planetary datasets, users can search across indexed S3 objects, filter results by attributes like file type, size, and date, inspect metadata, and organize important files through tagging and collaboration features. In the capstone presentation, the project was framed around the idea that NASA's data is growing faster than scientists can navigate it, and ArtemiS3 addresses that by helping users index, search, visualize, and discover the data more efficiently.",
+      "From a technical perspective, ArtemiS3 was built as a modern, Dockerized web application. The frontend uses Svelte and Tailwind CSS to provide a responsive user interface, while the backend is built with Python's FastAPI to coordinate search requests, S3 access, and application logic. Boto3 is used to interact with NASA and USGS AWS S3 bucket storage, Meilisearch powers fast full-text and metadata search, and PostgreSQL stores lightweight user data such as recent searches and tagged files. The system was designed to run on an AWS EC2 instance with separate containers for the frontend, backend, database, and search engine.",
+      "My role on the project was Architect, which centered on helping shape the system design, technology stack, and overall implementation approach. The architecture connected a Svelte frontend, FastAPI backend, Meilisearch index, PostgreSQL database, and AWS S3 data source through a containerized deployment model. This gave the team a clear separation of responsibilities across the UI, API layer, search infrastructure, storage access, and user data persistence. The frontend routes requests through the NGINX reverse proxy to the backend, the backend communicating with Meilisearch and PostgreSQL, and Boto3 connecting the application to NASA and USGS S3 buckets.",
+      "The final product demonstrated a practical improvement over the existing workflow: before ArtemiS3, users were limited to manual folder navigation, no global filtering, difficult file discovery, and static storage interfaces; after ArtemiS3, users gained instant search, advanced filters, faster discovery, and a more interactive system. The project also included unit testing with Svelte's testing library and Pytest, integration testing with Postman, usability testing through USGS researcher surveys, and iterative improvements based on client feedback. Future work includes adding support for private S3 bucket access control, caching, rate control, and security auditing to make the system more scalable for enterprise and restricted research environments.",
     ],
     links: {
       repoUrl: "https://github.com/Artemi-S3/ArtemiS3",
@@ -123,14 +141,16 @@ export const projectRecords: ProjectRecord[] = [
     subtitle: "Skin lesion classification",
     description:
       "A research benchmark and framework for cross-dataset skin lesion classification under extreme dataset shift.",
-    categories: ["ML", "Data"],
+    categories: ["ML", "Data", "Computer Vision"],
     technologies: [
+      "Python",
       "PyTorch",
+      "Torchvision",
       "timm",
-      "CNN",
-      "ViT",
+      "ResNet50",
+      "ViTs",
+      "SLURM",
       "HPC",
-      "Matplotlib",
       "Next.js",
     ],
     accent: "teal",
@@ -145,14 +165,16 @@ export const projectRecords: ProjectRecord[] = [
         alt: "LesionShiftAI project webpage",
       },
       {
-        src: "/LesionShiftAI_port/val_final_pr.png",
-        alt: "Validation PR curve for LesionShiftAI experiments",
+        src: "/LesionShiftAI_port/lesionshiftai_results.png",
+        alt: "Validation and external testing resilts for LesionShiftAI experiments",
       },
     ],
     aboutSections: [
-      "LesionShiftAI focuses on robust skin lesion classification when training and evaluation data differ significantly. The project emphasizes realistic generalization challenges that appear in clinical and research environments.",
-      "It provides a benchmark-oriented framework for training, comparing, and analyzing multiple model families under shift conditions. This includes structured experiment management and visual diagnostics for model behavior.",
-      "The work showcases rigorous ML evaluation practices and practical engineering around reproducibility, reporting, and deployment-ready model experimentation.",
+      "LesionShiftAI is an end-to-end research benchmark I built to study how well skin lesion classification models generalize under dataset shift. The project focuses on binary benign vs malignant classification using dermoscopic images, with models trained and validated on ISIC 2019 and externally tested on HAM10000. The motivation was to go beyond internal validation accuracy and evaluate whether models that perform well on one dataset can still make reliable predictions when tested on images from a different source distribution.",
+      "The project compares multiple deep learning approaches for melanoma risk classification, including a baseline ResNet50 CNN, a five-fold ResNet50 ensemble, ViT B16, and a larger ViT L16 model. All models were trained through a shared pipeline that handled data loading, preprocessing, binary label mapping, training, validation, checkpointing, metric export, and external testing. Images were standardized to 224x224 pixels, with training augmentations such as flips and brightness or contrast jitter, while validation and testing used deterministic preprocessing to keep evaluation consistent.",
+      "A central part of LesionShiftAI was evaluating model performance with clinically meaningful metrics rather than relying only on accuracy alone. Because malignant lesions are the high risk class, I tracked metrics such as recall, F1, ROC AUC, and PR AUC, with special attention to false negatives because they represent malignant lesions incorrectly classified as benign. The results showed that all models experienced some performance drop on HAM10000, confirming that dataset shift is a major challenge in medical image classification. However, the ViT L16 model achieved the strongest overall performance across most major validation and external testing metrics, suggesting that larger pretrained vision transformers may offer stronger generalization than the CNN based approaches tested.",
+      "From an engineering perspective, LesionShiftAI was structured as a reproducible machine learning framework rather than a single experiment. The repository includes configurable training scripts, model-specific pipelines, metric outputs, prediction exports, ROC and precision-recall curve generation, unit and integration tests, and SLURM launch scripts for running experiments on NAU's Monsoon HPC cluster. The project also supports artifact export for checkpoints, predictions, metrics, and generalization gap analysis, making it easier to compare models consistently and reproduce results across experiments.",
+      "The project also highlights important ethical limitations of applying AI to medical screening. LesionShiftAI is not a diagnostic tool, but a research benchmark intended to study generalization behavior across datasets. The strongest model still produced false negatives on external testing, which reinforces the need for careful threshold tuning, broader dataset representation, and clinical oversight before any model like this could be considered for real-world decision support.",
     ],
     links: {
       repoUrl: "https://github.com/jeffreyHoelzel/LesionShiftAI",
@@ -168,10 +190,15 @@ export const projectRecords: ProjectRecord[] = [
     categories: ["Automation", "Data"],
     technologies: [
       "Python",
-      "Web Scraping",
       "Selenium",
-      "BeautifulSoup4",
-      "Data Analysis",
+      "BeautifulSoup",
+      "pandas",
+      "NumPy",
+      "Jupyter Notebook",
+      "Matplotlib",
+      "Seaborn",
+      "Statsmodels",
+      "GPX route analysis",
     ],
     accent: "blue",
     featured: false,
@@ -184,11 +211,24 @@ export const projectRecords: ProjectRecord[] = [
         src: "/UltraSignUp/male_velocity_vs_distance.png",
         alt: "Plot of male velocity vs race distance",
       },
+      {
+        src: "/UltraSignUp/female_velocity_vs_distance.png",
+        alt: "Plot of female velocity vs race distance",
+      },
+      {
+        src: "/UltraSignUp/male_velocity_vs_distance_resids.png",
+        alt: "Plot of male velocity vs race distance residuals",
+      },
+      {
+        src: "/UltraSignUp/female_velocity_vs_distance_resids.png",
+        alt: "Plot of female velocity vs race distance residuals",
+      },
     ],
     aboutSections: [
-      "UltraSignUp Data Mining automates collection and cleaning of trail race results for exploratory analytics. The pipeline is geared toward repeatable extraction so new race data can be integrated with minimal manual effort.",
-      "The workflow handles browser-driven collection, parsing, and transformation into analysis-ready datasets. That enables consistent trend analysis and easier reporting for performance insights.",
-      "This project demonstrates practical automation engineering with a focus on data quality, process reliability, and end-to-end analytical usability.",
+      "UltraSignup is a Python-based web scraping and data analysis pipeline I built to collect, clean, and structure large-scale trail race data from UltraSignup and Strava. The project began as a way to automate the tedious process of manually gathering race information, finisher statistics, and podium results across many events. Given an Excel file of race names, the system scrapes both general race details and top finisher data, then exports the results into structured CSV files that can be used for downstream analysis.",
+      "A major part of the project was turning inconsistent web data into analysis-ready datasets. Race pages often contain event names, dates, distances, units, locations, and results in inconsistent formats, so I built post-processing logic to standardize extracted values, clean duplicated rows, sort outputs, and generate a unique event IDs that links race-level data with podium finisher data. This made it possible to analyze races across multiple dimensions, such as event distance, location, date, participation trends, and gender based podium outcomes, rather than treating each scraped page as an isolated result.",
+      "The data processing layer was separated from the scraping layer so that raw collected data could be transformed into cleaner analytical outputs. Using tools like pandas, the pipeline reads input race lists, structures scraped data into DataFrames, applies formatting rules, standardizes columns, removes duplicates, and saves organized CSV files. This design allowed the project to function as a scraper and lightweight data engineering workflow that converts messy web-based race information into usable datasets for statistical analysis, visualization, and future modeling.",
+      "Overall, the project demonstrates how I approach data-driven software engineering: automate data collection, clean and normalize inconsistent inputs, preserve relationships between datasets, and produce outputs that can support meaningful analysis. The final result was a reusable pipeline capable of transforming a list of race names into structured race and podium datasets, making it easier to study trail running events at scale.",
     ],
     links: {},
   },
@@ -199,7 +239,23 @@ export const projectRecords: ProjectRecord[] = [
     description:
       "A clustering study over MACH-IV assessment data to identify interpretable personality groupings for psychology research.",
     categories: ["AI", "ML"],
-    technologies: ["Clustering", "PCA", "Scikit-learn", "Visualization", "HPC"],
+    technologies: [
+      "Python",
+      "Scikit-Learn",
+      "pandas",
+      "NumPy",
+      "Matplotlib",
+      "Seaborn",
+      "K-Means",
+      "Gaussian Mixture Models",
+      "Spectral Clustering",
+      "Hierarchical Clustering",
+      "PCA",
+      "SLURM",
+      "HPC",
+      "HTML",
+      "CSS",
+    ],
     accent: "violet",
     featured: false,
     coverImage: {
@@ -208,20 +264,12 @@ export const projectRecords: ProjectRecord[] = [
     },
     galleryImages: [
       {
+        src: "/MACH-IV_Clustering/mach-iv_clustering_site.png",
+        alt: "MACH-IV website landing page"
+      },
+      {
         src: "/MACH-IV_Clustering/dendrograms.png",
         alt: "Dendrogram plots from hierarchical clustering methods",
-      },
-      {
-        src: "/MACH-IV_Clustering/elbow_method.png",
-        alt: "Elbow method chart",
-      },
-      {
-        src: "/MACH-IV_Clustering/example_pca.png",
-        alt: "PCA projection of discovered clusters",
-      },
-      {
-        src: "/MACH-IV_Clustering/example_response_heatmap_k_3.png",
-        alt: "Response heatmap for three-cluster solution",
       },
       {
         src: "/MACH-IV_Clustering/gmm_metrics.png",
@@ -231,69 +279,18 @@ export const projectRecords: ProjectRecord[] = [
         src: "/MACH-IV_Clustering/high_mach.png",
         alt: "High Machiavellianism profile",
       },
-      {
-        src: "/MACH-IV_Clustering/low_mach.png",
-        alt: "Low Machiavellianism profile",
-      },
-      {
-        src: "/MACH-IV_Clustering/mid_mach.png",
-        alt: "Mid Machiavellianism profile",
-      },
-      {
-        src: "/MACH-IV_Clustering/spectral_embedding_k_2.png",
-        alt: "Spectral embedding visualization",
-      },
     ],
     aboutSections: [
-      "MACH-IV Clustering explores latent structure in personality survey responses using unsupervised learning methods. The objective is to produce interpretable groupings that can support behavioral analysis.",
-      "The project compares multiple clustering approaches and uses dimensionality reduction plus visual diagnostics to evaluate stability and separability of discovered segments.",
-      "It highlights analytical rigor in model selection, interpretation, and communication of findings for mixed technical and research audiences.",
+      "MACH-IV Clustering is an unsupervised machine learning project focused on exploring latent patterns in Machiavellianism personality data. The project used the MACH-IV dataset from the Open Source Psychometrics Project, which contains responses to 20 Likert-scale Machiavellianism questions along with demographic and auxiliary variables such as age, gender, location, and education. The goal was to determine whether distinct respondent groups naturally emerge from the data and to characterize those groups in relation to broader personality traits, particularly traits from the Ten Item Personality Inventory.",
+      "The project compared four clustering approaches: K-Means, Gaussian Mixture Models, Spectral Clustering, and Hierarchical Agglomerative Clustering. Each algorithm was implemented as its own modular pipeline with configurable parameters, preprocessing, clustering execution, and artifact generation. The cleaned dataset could be passed into any of the four clustering workflows, which produced cluster labels, PCA visualizations, question response heatmaps, and downstream analysis outputs. This made it possible to compare how different unsupervised learning methods grouped respondents and whether those groupings revealed consistent psychological patterns.",
+      "A major focus of the project was interpretability. After clustering, the analysis pipeline generated visualizations such as heatmaps, PCA plots, and radar plots to help explain how each cluster differed across MACH-IV responses and TIPI personality traits. Across the results, higher Machiavellian clusters were generally associated with being more reserved or quiet, less sympathetic or warm, and less extraverted or enthusiastic. Some algorithms also suggested associations between higher Machiavellianism and traits such as being more critical or quarrelsome, more dependable or self disciplined, and less anxious or easily upset.",
+      "From an engineering standpoint, the project was built with reproducibility and scalability in mind. The repository includes separate folders for each clustering algorithm, a shared cluster analysis module, raw and processed data directories, documentation, and a website containing more detailed interpretations. The team first tested the models locally on smaller samples, then created HPC-ready packages and SLURM scripts to run the full dataset on NAU's Monsoon cluster. This allowed the project to move from small-scale experimentation to larger full dataset analysis while keeping the workflow organized and reproducible.",
+      "Overall, MACH-IV Clustering demonstrates my ability to lead and contribute to an applied machine learning project where the objective was exploratory analysis rather than supervised prediction. The project required data cleaning, algorithm implementation, cluster evaluation, visualization, interpretation, HPC execution, and clear technical documentation. While unsupervised learning does not provide definitive labels, the project produced a strong starting point for understanding personality-based groupings and identified several future directions, including using embeddings, more expressive models, or supervised learning with labeled Machiavellianism categories.",
     ],
     links: {
       repoUrl: "https://github.com/jeffreyHoelzel/mach-iv-clustering",
       liveUrl: "https://jeffreyhoelzel.github.io/mach-iv-clustering/",
     },
-  },
-  {
-    slug: "cavco-it-helpdesk-chatbot",
-    name: "Cavco IT Helpdesk Chatbot",
-    subtitle: "Internal Automation Assistant",
-    description:
-      "An AI-driven IT helpdesk assistant built to help employees resolve routine technical issues more quickly.",
-    categories: ["AI", "ML", "Automation"],
-    technologies: [
-      "LLMs",
-      "Agentic AI",
-      "Prompting",
-      "Internal Tools",
-      "Support Ops",
-    ],
-    accent: "teal",
-    featured: false,
-    coverImage: {
-      src: "/ITHelpdeskChatbot/hiring_image.jpg",
-      alt: "Welcome banner at Cavco",
-    },
-    galleryImages: [
-      {
-        src: "/ITHelpdeskChatbot/hiring_image.jpg",
-        alt: "Welcome banner at Cavco",
-      },
-      {
-        src: "/ITHelpdeskChatbot/presenting_chatbot.jpg",
-        alt: "Chatbot presentation to Cavco leadership",
-      },
-      {
-        src: "/ITHelpdeskChatbot/CavcoIndustries_logo.png",
-        alt: "Cavco Industries logo",
-      },
-    ],
-    aboutSections: [
-      "This internal chatbot project was designed to reduce repetitive IT support overhead and improve employee response times for common issues.",
-      "The system centers on practical prompt design, workflow constraints, and support-oriented response patterns so it can complement existing helpdesk processes.",
-      "It demonstrates applied enterprise AI integration with an emphasis on reliability, user trust, and measurable operational impact.",
-    ],
-    links: {},
   },
   {
     slug: "campus-health-chatbot",
@@ -303,46 +300,45 @@ export const projectRecords: ProjectRecord[] = [
       "A chatbot evaluation platform designed to support campus health questions and assess interaction quality in focus groups.",
     categories: ["AI", "Full-Stack"],
     technologies: [
-      "Conversational AI",
-      "UX Research",
       "React",
-      "GCP",
+      "JavaScript",
+      "Flask",
+      "Python",
+      "Firebase",
+      "OpenAI API",
       "HuggingFace",
       "PyTorch",
+      "Transformers",
+      "Accelerate",
+      "BitsAndBytes",
       "Docker",
+      "Docker Compose",
+      "GCP",
+      "Lambda Labs",
+      "RAG",
     ],
-    accent: "blue",
+    accent: "teal",
     featured: false,
     coverImage: {
-      src: "/CampusHealthChatbot/chat_room_chatbot.png",
-      alt: "Multi-user chatbot chat room interface",
+      src: "/CampusHealthChatbot/sample_interaction.png",
+      alt: "Sample chatbot interaction",
     },
     galleryImages: [
-      {
-        src: "/CampusHealthChatbot/chat_room_chatbot.png",
-        alt: "Multi-user chatbot chat room interface",
-      },
       {
         src: "/CampusHealthChatbot/sample_interaction.png",
         alt: "Sample chatbot interaction",
       },
       {
-        src: "/CampusHealthChatbot/start_survey.png",
-        alt: "Pre-session survey prompts",
-      },
-      {
         src: "/CampusHealthChatbot/post_chat_survey.png",
         alt: "Post-session survey prompts",
       },
-      {
-        src: "/CampusHealthChatbot/CANIS_Lab_logo.jpg",
-        alt: "CANIS Lab logo",
-      },
     ],
     aboutSections: [
-      "Campus Health Chatbot was created to explore how conversational systems can support student-facing health information workflows in a structured evaluation setting.",
-      "The platform combines a web interface with research instrumentation, enabling focus-group style studies and qualitative review of interaction quality.",
-      "This work demonstrates the intersection of AI product implementation and human-centered evaluation for socially sensitive domains.",
+      "The Campus Health Chatbot Platform is a participatory-designed, LLM-powered chatbot system built to support college students as they seek, discuss, and understand health and wellness information. The platform was designed with a focus on first generation students and other underserved campus communities, creating a guided peer group environment where students can collaboratively ask health related questions, clarify concerns, and receive supportive responses in real time. Rather than only acting as a simple question answering bot, the system also facilitates a structured multi-user conversation space where the chatbot can provide fact-checking, resource recommendations, and sentiment sensitive support during group discussions.",
+      "A major goal of the project was to study how language models can support health information seeking in realistic student centered settings. The platform combines prompt engineering, retrieval augmented generation (RAG), and model comparison to evaluate how different conversational structures and model types affect user trust, clarity, and engagement. The system was also designed to compare small language models against full-scale LLMs such as ChatGPT 4o, with the broader research goal of understanding the tradeoffs between response quality, computational cost, and environmental efficiency.",
+      "From an engineering perspective, the platform was built as a Dockerized full-stack web application. The frontend uses React to support participant registration, chat rooms, chatbot interaction, pre and post surveys, and navigation flows. The backend is built with Flask and Flask SocketIO, enabling real-time communication between users and the chatbot. Firebase Firestore is used to store participant data, chat logs, survey responses, and tracking information, while the backend integrates with both OpenAI models and open source HuggingFace models through PyTorch, Transformers, Accelerate, and BitsAndBytes.",
+      "The deployment workflow was designed to support both local development and cloud-based research sessions. Locally, the system runs through Docker Compose with separate frontend, backend, and proxy containers. For focus groups and higher compute experiments, the platform can be deployed on Lambda Labs GPU instances or Google Cloud Compute Engine, with Lambda Labs recommended because of its immediate GPU availability, lower operational friction, and suitability for running open-source models during research sessions. This made the platform flexible enough to support development, model testing, focus groups, and RITE testing in different environments.",
+      "Overall, this project demonstrates my ability to build applied AI systems that combine full-stack engineering, real-time communication, cloud deployment, and human centered research goals. The Campus Health Chatbot Platform was not just a chatbot interface, but a research platform for studying how LLMs and SLMs can help students navigate health information collaboratively, empathetically, and responsibly.",
     ],
     links: {},
   },
@@ -355,13 +351,18 @@ export const projectRecords: ProjectRecord[] = [
     categories: ["Full-Stack"],
     technologies: [
       "React",
+      "JavaScript",
+      "Python",
       "Flask",
+      "SQLite",
       "PostgreSQL",
-      "Data UI",
-      "DigitalOcean",
       "Docker",
+      "Docker Compose",
+      "DigitalOcean",
+      "Apache",
+      "Authentication",
     ],
-    accent: "violet",
+    accent: "blue",
     featured: false,
     coverImage: {
       src: "/LouiesRatings/cover.png",
@@ -373,14 +374,6 @@ export const projectRecords: ProjectRecord[] = [
         alt: "Louie's Ratings title slide",
       },
       {
-        src: "/LouiesRatings/login_demo.png",
-        alt: "Louie's Ratings login workflow",
-      },
-      {
-        src: "/LouiesRatings/professor_page_demo2.png",
-        alt: "Professor details page",
-      },
-      {
         src: "/LouiesRatings/class_page_demo.png",
         alt: "Class details page",
       },
@@ -389,18 +382,16 @@ export const projectRecords: ProjectRecord[] = [
         alt: "Grade distribution visualization",
       },
       {
-        src: "/LouiesRatings/use_case_diagram.png",
-        alt: "Use case diagram",
-      },
-      {
         src: "/LouiesRatings/LouiesRatings_logo.png",
         alt: "Louie's Ratings logo",
       },
     ],
     aboutSections: [
-      "Louie's Ratings is a student-centered application for course and instructor discovery, combining qualitative reviews with historical grade distribution context.",
-      "The project integrates full-stack data flows and UI components to make institutional data easier to explore and compare before enrollment decisions.",
-      "It showcases practical product engineering across frontend experience, backend services, and analytics-friendly data presentation.",
+      "Louie's Ratings is a full-stack web application I originally conceptualized to help Northern Arizona University Computer Science students make more informed course enrollment decisions. I came up with the idea after recognizing that students often rely on scattered, incomplete, or overly subjective information when choosing courses and professors. The goal was to create an NAU-focused alternative to RateMyProfessor that combined professor reviews, class information, student comments, and historical grade distribution data in one centralized platform. Rather than simply showing opinions, Louie's Ratings emphasized visual grade distributions and course-specific insights so students could make scheduling decisions with more confidence.",
+      "Because the project started from my idea, I helped lead the team through both the technical development process and the nontechnical project deadlines. This included shaping the product vision, guiding early requirements discussions, helping define the core value proposition, and keeping the team aligned around what students actually needed from the platform. Through interviews and requirements analysis, we identified that students wanted clearer access to grade distributions, withdrawal rates, professor teaching style, course difficulty, syllabus expectations, and side-by-side professor comparisons. Those findings helped turn the initial concept into a more concrete product direction.",
+      "From a product perspective, Louie's Ratings supports professor and class search, professor ratings, student comments, graphical grade distribution displays, account login, and administrative moderation of inappropriate comments. Logged-in users can leave feedback and ratings, while other students can browse professor and class pages to compare prior student experiences and grade outcomes. The system was designed around the idea that students should not have to piece together information from multiple disconnected sources just to feel prepared for a semester.",
+      "From an engineering perspective, Louie's Ratings was built as a Dockerized full-stack application with a React frontend, Flask backend, and relational database support. SQLite was used for development, PostgreSQL was selected for production, and the application was deployed on DigitalOcean using Docker Compose. The deployed architecture included separate containers for the backend service, frontend web interface, automated tests, and an Apache-based proxy for routing and content delivery.",
+      "My individual contribution included implementing the login requirement, which allowed students to access their own account and view comments they had left. More broadly, this project gave me experience leading a team from idea formation through requirements, implementation, testing, documentation, and deployment planning. Louie's Ratings demonstrates my ability to contribute technically and to identify a real user problem, turn it into a concept, coordinate a team around that vision, and guide the project through engineering and course deliverable deadlines.",
     ],
     links: {
       repoUrl: "https://github.com/jeffreyHoelzel/LouiesRatings",

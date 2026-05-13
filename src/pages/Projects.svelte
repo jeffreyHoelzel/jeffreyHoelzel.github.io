@@ -24,10 +24,12 @@
     "Full-Stack",
     "Data",
     "Automation",
+    "Computer Vision",
   ];
 
   const INITIAL_PROJECTS_VISIBLE = 3;
   const PROJECTS_BATCH_SIZE = 3;
+  const MAX_TECHNOLOGY_TAGS = 5;
 
   let activeFilter: ProjectFilter = "All";
   let lastFilter: ProjectFilter = activeFilter;
@@ -170,6 +172,9 @@
         {#each displayedProjects as project, index (project.slug)}
           {@const detailUrl = getDetailUrl(project)}
           {@const iconAction = getIconAction(project)}
+          {@const visibleTechnologies = project.technologies.slice(0, MAX_TECHNOLOGY_TAGS)}
+          {@const hiddenTechnologyCount =
+            project.technologies.length - visibleTechnologies.length}
           <article
             class="projectCard"
             class:projectCardBlue={project.accent === "blue"}
@@ -200,9 +205,12 @@
               <p class="projectDescription">{project.description}</p>
 
               <div class="projectTags">
-                {#each project.technologies as tech}
+                {#each visibleTechnologies as tech}
                   <span class="projectTag">{tech}</span>
                 {/each}
+                {#if hiddenTechnologyCount > 0}
+                  <span class="projectTag">+{hiddenTechnologyCount}</span>
+                {/if}
               </div>
 
               <div class="projectActions">

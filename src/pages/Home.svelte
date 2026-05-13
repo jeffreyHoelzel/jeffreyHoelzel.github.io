@@ -34,6 +34,7 @@
   const aboutPhoto = `${base}/headshot_2025_Jeffrey-Hoelzel_3.jpg`;
   const aboutTags = ["Full-Stack", "AI/ML", "Data Systems"];
   const projectsHref = `${base}/projects/`;
+  const MAX_TECHNOLOGY_TAGS = 5;
 
   function toAssetUrl(path: string): string {
     return `${base}${path}`;
@@ -259,6 +260,9 @@
 
       <div class="featuredProjectsGrid">
         {#each featuredProjects as project}
+          {@const visibleTechnologies = project.technologies.slice(0, MAX_TECHNOLOGY_TAGS)}
+          {@const hiddenTechnologyCount =
+            project.technologies.length - visibleTechnologies.length}
           <article
             class="featuredProjectCard"
             class:featuredProjectCardBlue={project.accent === "blue"}
@@ -283,9 +287,12 @@
               <p class="featuredProjectDescription">{project.description}</p>
 
               <div class="featuredProjectTags">
-                {#each project.technologies as tech}
+                {#each visibleTechnologies as tech}
                   <span class="featuredProjectTag">{tech}</span>
                 {/each}
+                {#if hiddenTechnologyCount > 0}
+                  <span class="featuredProjectTag">+{hiddenTechnologyCount}</span>
+                {/if}
               </div>
 
               <div class="featuredProjectActions">
