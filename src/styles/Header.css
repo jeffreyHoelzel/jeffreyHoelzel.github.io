@@ -1,0 +1,180 @@
+/* header */
+.siteHeader {
+  position: sticky;
+  background: rgba(18, 30, 46, 0.34);
+  -webkit-backdrop-filter: saturate(130%) blur(10px);
+  backdrop-filter: saturate(130%) blur(10px);
+  border-bottom: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+  transition: background-color 0.25s ease, border-color 0.25s ease,
+    box-shadow 0.25s ease;
+  top: 0;
+  z-index: 50;
+}
+
+.siteHeaderScrolled {
+  background: rgba(10, 16, 28, 0.56);
+  border-bottom-color: color-mix(in oklab, var(--ink) 16%, transparent);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.navRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+  position: relative;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.brandLogo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: transparent;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 35%, transparent);
+}
+
+.brandPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+}
+
+.brandName {
+  font-size: clamp(14px, 3.5vw, 18px);
+  line-height: 1.1;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.navLink {
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--muted);
+  transition: color 0.12s ease, background 0.12s ease;
+}
+
+.navLink:hover {
+  color: var(--ink);
+  background-color: color-mix(in oklab, var(--ink) 6%, transparent);
+}
+
+/* hamburger is hidden on desktop */
+.navToggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.navToggleBar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--ink);
+  margin-top: 3px;
+}
+
+.navToggleBar:first-child {
+  margin-top: 0;
+}
+
+.burgerMenu {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+.burgerMenu:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.burgerMenu:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 420px) {
+  .brand {
+    letter-spacing: 0.5px;
+  }
+
+  .brandName {
+    font-size: 0.98rem;
+  }
+
+  .navLinks,
+  .navLink {
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 720px) {
+  /* show hamburger */
+  .navToggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* turn links into dropdown */
+  .navLinks {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    flex-direction: column;
+    align-items: flex-start;
+
+    background: rgba(11, 12, 16, 0.96);
+    backdrop-filter: blur(10px);
+
+    padding: 12px clamp(var(--s3), 4vw, var(--s4));
+    gap: 6px;
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+
+    border-bottom: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+  }
+
+  /* when open */
+  .navLinksOpen {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  /* bigger tap targets */
+  .navLink {
+    padding: 10px 0;
+    width: 100%;
+  }
+}
