@@ -89,7 +89,7 @@
       description:
         "A research benchmark and framework for cross-dataset skin lesion classification under...",
       technologies: ["PyTorch", "SLURM", "timm", "Next.js"],
-      imageUrl: `${BASE_URL}LesionShiftAI/val_final_pr.png`,
+      imageUrl: `${BASE_URL}LesionShiftAI_port/val_final_pr.png`,
       imageAlt: "ViT B16 PR AUC validation plot",
       detailsUrl: projectsHref,
       sourceUrl: "https://github.com/jeffreyHoelzel/LesionShiftAI",
