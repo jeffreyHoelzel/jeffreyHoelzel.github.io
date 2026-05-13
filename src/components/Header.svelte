@@ -27,16 +27,25 @@
   const closeNav = () => (navOpen = false);
 
   let isMobile = false;
+  let hasScrolled = false;
   const checkScreen = () => (isMobile = window.innerWidth <= 720);
+  const checkScroll = () => (hasScrolled = window.scrollY > 8);
+
   onMount(() => {
     checkScreen();
+    checkScroll();
     window.addEventListener("resize", checkScreen);
-    return () => window.removeEventListener("resize", checkScreen);
+    window.addEventListener("scroll", checkScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("resize", checkScreen);
+      window.removeEventListener("scroll", checkScroll);
+    };
   });
 </script>
 
 <!-- Header -->
-<header class="siteHeader">
+<header class="siteHeader" class:siteHeaderScrolled={hasScrolled}>
   <div class="wrap">
     <div class="navRow">
       <a href={homeHref} class="brand" aria-label="home">

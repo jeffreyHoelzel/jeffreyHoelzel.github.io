@@ -33,6 +33,7 @@ body,
   background: var(--bg);
   color: var(--ink);
   font-family: "Work Sans", system-ui;
+  margin: 0;
   padding: 0;
 }
 
@@ -67,11 +68,20 @@ img {
 /* header */
 .siteHeader {
   position: sticky;
-  background: rgba(11, 12, 16, 0.78);
-  backdrop-filter: saturate(140%) blur(10px);
-  border-bottom: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+  background: rgba(18, 30, 46, 0.34);
+  -webkit-backdrop-filter: saturate(130%) blur(10px);
+  backdrop-filter: saturate(130%) blur(10px);
+  border-bottom: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+  transition: background-color 0.25s ease, border-color 0.25s ease,
+    box-shadow 0.25s ease;
   top: 0;
   z-index: 50;
+}
+
+.siteHeaderScrolled {
+  background: rgba(10, 16, 28, 0.56);
+  border-bottom-color: color-mix(in oklab, var(--ink) 16%, transparent);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
 .navRow {
@@ -208,7 +218,7 @@ img {
 }
 
 .heroName {
-  margin: 0 0 50px 0;
+  margin: 0 0 30px 0;
   font-size: clamp(24px, 5vw, 80px);
   line-height: 1.1;
   letter-spacing: 0.05em;
@@ -368,7 +378,7 @@ img {
 }
 
 .scrollCue {
-  margin: 20px auto 0;
+  margin: 10px auto 0;
   min-width: 100px;
   height: auto;
   padding: 2px 10px;
@@ -466,24 +476,294 @@ img {
 
 /* about block */
 .about {
-  background: linear-gradient(0deg, #0f1219, #0b0c10);
+  background:
+    radial-gradient(680px 340px at 50% 0%, rgba(100, 195, 255, 0.12), transparent 70%),
+    linear-gradient(0deg, #090b11, #07090f);
   border-top: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+}
+
+.aboutIntro {
+  text-align: center;
+  margin-inline: auto;
+  max-width: 700px;
+  margin-bottom: clamp(24px, 5vw, 42px);
+}
+
+.aboutEyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 7px 14px;
+  border: 1px solid color-mix(in oklab, var(--accent) 45%, transparent);
+  background: color-mix(in oklab, var(--accent) 12%, transparent);
+  color: #c6e8ff;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .aboutGrid {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: clamp(var(--s3), 5vw, var(--s5));
+  grid-template-columns: minmax(250px, 0.86fr) minmax(0, 1.14fr);
+  gap: clamp(20px, 3vw, 28px);
 }
 
 .aboutTitle {
-  margin: 0 0 10px 0;
-  font-size: clamp(24px, 3vw, 32px);
+  margin: 14px 0 10px 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+  letter-spacing: 0.02em;
+  line-height: 1.06;
+  background: linear-gradient(95deg, #d7e7ff 0%, #94d7ff 48%, #5ea9ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
-.prose {
-  color: #c3cad5;
-  max-width: 72ch;
+.aboutSubtitle {
+  margin: 0;
+  color: color-mix(in oklab, var(--ink) 66%, #9cc0e9);
+  font-size: clamp(1rem, 1.5vw, 1.28rem);
+}
+
+.aboutProfileCard {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 560px;
+  border: 1px solid color-mix(in oklab, var(--accent) 20%, transparent);
+  background: linear-gradient(180deg, #121927, #0d1320);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--ink) 5%, transparent),
+    0 18px 42px rgba(0, 0, 0, 0.28);
+  transition: border-color 0.2s ease, box-shadow 0.24s ease;
+}
+
+.aboutProfileMedia {
+  position: absolute;
+  inset: 0;
+}
+
+.aboutProfileMedia::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(4, 8, 16, 0.92) 16%, rgba(4, 8, 16, 0.2) 56%, transparent 84%);
+}
+
+.aboutProfileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transform: scale(1);
+  transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.aboutProfileCard:hover {
+  border-color: color-mix(in oklab, var(--accent) 52%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--accent) 14%, transparent),
+    0 16px 36px rgba(0, 0, 0, 0.3),
+    0 0 0 1px color-mix(in oklab, var(--accent) 36%, transparent),
+    0 0 26px color-mix(in oklab, var(--accent) 25%, transparent);
+}
+
+.aboutProfileCard:hover .aboutProfileImage {
+  transform: scale(1.045);
+}
+
+.aboutProfileContent {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1;
+}
+
+.aboutProfileName {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  line-height: 1.08;
+}
+
+.aboutProfileRole {
+  margin: 8px 0 12px 0;
+  color: #8bcfff;
+  font-size: clamp(0.9rem, 1.4vw, 1.02rem);
+}
+
+.aboutTagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.aboutTag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: #cceaff;
+  border: 1px solid color-mix(in oklab, var(--accent) 46%, transparent);
+  background: color-mix(in oklab, var(--accent) 18%, transparent);
+}
+
+.aboutCards {
+  display: grid;
+  gap: 14px;
+}
+
+.aboutInfoCard {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 14px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+  padding: clamp(16px, 2vw, 22px);
+  transition: border-color 0.2s ease, box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+.aboutInfoCardEducation {
+  background: linear-gradient(145deg, rgba(21, 44, 92, 0.6), rgba(18, 24, 45, 0.72));
+  border-color: color-mix(in oklab, #61b4ff 38%, transparent);
+}
+
+.aboutInfoCardTech {
+  background: linear-gradient(145deg, rgba(26, 28, 62, 0.68), rgba(24, 18, 42, 0.76));
+  border-color: color-mix(in oklab, #7d9aff 32%, transparent);
+}
+
+.aboutInfoCardMission {
+  background: linear-gradient(145deg, rgba(15, 46, 56, 0.65), rgba(13, 34, 44, 0.8));
+  border-color: color-mix(in oklab, #4ad7be 30%, transparent);
+}
+
+.aboutInfoCardEducation:hover {
+  border-color: color-mix(in oklab, #61b4ff 72%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, #61b4ff 36%, transparent),
+    0 0 24px color-mix(in oklab, #61b4ff 22%, transparent);
+  transform: translateY(-1px);
+}
+
+.aboutInfoCardTech:hover {
+  border-color: color-mix(in oklab, #8c86ff 68%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, #8c86ff 34%, transparent),
+    0 0 24px color-mix(in oklab, #8c86ff 20%, transparent);
+  transform: translateY(-1px);
+}
+
+.aboutInfoCardMission:hover {
+  border-color: color-mix(in oklab, #3de0bf 72%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, #3de0bf 34%, transparent),
+    0 0 24px color-mix(in oklab, #3de0bf 20%, transparent);
+  transform: translateY(-1px);
+}
+
+.aboutInfoIconWrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in oklab, var(--accent) 50%, transparent);
+  background: color-mix(in oklab, var(--accent) 14%, transparent);
+  color: #8fd3ff;
+}
+
+.aboutInfoIcon {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.aboutInfoIcon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.aboutInfoIconEducation svg {
+  transform: translateY(0.5px) scale(1.07);
+}
+
+.aboutInfoIconTech svg {
+  transform: scale(1.02);
+}
+
+.aboutInfoIconMission svg {
+  transform: scale(1.08);
+}
+
+.aboutInfoTitle {
+  margin: 0 0 7px 0;
+  font-size: clamp(1.1rem, 1.6vw, 1.36rem);
+  line-height: 1.14;
+}
+
+.aboutInfoText {
+  margin: 0;
+  color: color-mix(in oklab, var(--ink) 78%, #96b3d8);
+  font-size: clamp(0.94rem, 1.15vw, 1.04rem);
+  line-height: 1.58;
+}
+
+.aboutMissionContent {
+  display: grid;
+  gap: 14px;
+}
+
+.aboutResumeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 42px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in oklab, var(--accent) 42%, transparent);
+  background: linear-gradient(95deg, #2a72f0, #5a7bff 58%, #55bfff);
+  color: #f6fbff;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: transform 0.14s ease, filter 0.14s ease;
+}
+
+.aboutResumeIcon {
+  width: 15px;
+  height: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+
+.aboutResumeIcon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.aboutResumeButton:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+}
+
+.aboutResumeButton:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent) 76%, transparent);
+  outline-offset: 2px;
 }
 
 /* footer */
@@ -555,6 +835,20 @@ img {
 @media (max-width: 900px) {
   .aboutGrid {
     grid-template-columns: 1fr;
+    max-width: 760px;
+    margin-inline: auto;
+  }
+
+  .aboutProfileCard {
+    min-height: 460px;
+  }
+
+  .aboutCards {
+    gap: 12px;
+  }
+
+  .aboutResumeButton {
+    width: 100%;
   }
 }
 
@@ -629,6 +923,65 @@ img {
   .scrollCueIcon {
     width: 26px;
   }
+
+  .aboutIntro {
+    margin-bottom: 22px;
+  }
+
+  .aboutEyebrow {
+    font-size: 0.68rem;
+    padding: 6px 10px;
+  }
+
+  .aboutTitle {
+    margin-top: 10px;
+    font-size: clamp(1.68rem, 10vw, 2.3rem);
+  }
+
+  .aboutSubtitle {
+    font-size: 0.95rem;
+  }
+
+  .aboutProfileCard {
+    min-height: 390px;
+  }
+
+  .aboutProfileContent {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .aboutTag {
+    font-size: 0.68rem;
+    padding: 4px 8px;
+  }
+
+  .aboutInfoCard {
+    grid-template-columns: 34px 1fr;
+    gap: 10px;
+    padding: 13px;
+  }
+
+  .aboutInfoIconWrap {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+  }
+
+  .aboutInfoIcon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .aboutMissionContent {
+    gap: 10px;
+  }
+
+  .aboutInfoText {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
 }
 
 /* mobile styles */
@@ -643,6 +996,24 @@ img {
     gap: 20px;
     padding-top: clamp(22px, 6svh, 56px);
     padding-bottom: clamp(18px, 5svh, 48px);
+  }
+
+  .about {
+    background:
+      radial-gradient(480px 220px at 50% -2%, rgba(100, 195, 255, 0.16), transparent 70%),
+      linear-gradient(0deg, #090b11, #07090f);
+  }
+
+  .aboutGrid {
+    gap: 14px;
+  }
+
+  .aboutProfileCard {
+    min-height: 430px;
+  }
+
+  .aboutInfoCard {
+    padding: 14px;
   }
 
   .heroHeader {
@@ -786,5 +1157,11 @@ img {
     height: 14px;
     flex: 0 0 14px;
     display: block;
+  }
+}
+
+@media (max-width: 420px) {
+  .aboutProfileCard {
+    min-height: 390px;
   }
 }

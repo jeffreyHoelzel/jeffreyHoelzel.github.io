@@ -2,7 +2,13 @@
   import { base } from "$app/paths";
   import "../styles/Home.css";
   import { onMount } from "svelte";
-  import { FaChevronDown } from "svelte-icons/fa";
+  import {
+    FaChevronDown,
+    FaGraduationCap,
+    FaCode,
+    FaBullseye,
+    FaFileDownload,
+  } from "svelte-icons/fa";
 
   const BASE_URL = `${base}/`;
 
@@ -14,8 +20,18 @@
   let typedRole = roleTitles[0];
 
   const summary = `
-    I am a Software Engineering student at Northern Arizona University graduating in May 2026, with experience spanning machine learning, data systems, and full-stack development. I currently work as a Software Engineering Intern at Altored Health, building LLM-assisted healthcare search systems that combine conversational interfaces, semantic retrieval, and backend APIs. Alongside this role, I serve as a Machine Learning Engineer at the Pathogen and Microbiome Institute under a HURA research grant, where I developed PepSeqPred, a PyTorch-based pipeline that predicts antibody epitope locations across diverse pathogens. I also work on data systems engineering at NAU SICCS, designing high throughput data pipelines and scraping infrastructure for large-scale datasets used in statistical analysis.
+    I am a Software Engineer with experience across machine learning, data
+    systems, and full-stack development. I focus on building practical AI
+    products that combine strong engineering fundamentals with measurable
+    real-world impact.
   `.trim();
+  const education =
+    "Recently earned a B.S. in Software Engineering from Northern Arizona University.";
+  const techExpertise =
+    "Experience with full-stack development, applied AI/ML, APIs, and data pipeline engineering.";
+  const resumeHref = `${base}/resume/`;
+  const aboutPhoto = `${base}/headshot_2025_Jeffrey-Hoelzel_3.jpg`;
+  const aboutTags = ["Full-Stack", "AI/ML", "Data Systems"];
 
   const sleep = (ms: number) =>
     new Promise<void>((resolve) => {
@@ -127,13 +143,85 @@
 
   <!-- About -->
   <section class="about sectionPad" id="about" aria-label="About">
-    <div class="wrap aboutGrid">
-      <div>
-        <h2 class="aboutTitle">About me</h2>
+    <div class="wrap">
+      <div class="aboutIntro">
+        <span class="aboutEyebrow">Learn more</span>
+        <h2 class="aboutTitle">About Me</h2>
+        <p class="aboutSubtitle">
+          Currently building reliable, high-impact software
+        </p>
       </div>
-      <p class="prose">
-        {summary}
-      </p>
+
+      <div class="aboutGrid">
+        <article class="aboutProfileCard">
+          <div class="aboutProfileMedia">
+            <img
+              src={aboutPhoto}
+              alt="Portrait of Jeffrey Hoelzel Jr."
+              class="aboutProfileImage"
+            />
+          </div>
+          <div class="aboutProfileContent">
+            <h3 class="aboutProfileName">{name}</h3>
+            <p class="aboutProfileRole">Software, AI/ML, and Data Engineer</p>
+            <div class="aboutTagList" aria-label="Core focus areas">
+              {#each aboutTags as tag}
+                <span class="aboutTag">{tag}</span>
+              {/each}
+            </div>
+          </div>
+        </article>
+
+        <div class="aboutCards">
+          <article class="aboutInfoCard aboutInfoCardEducation">
+            <div class="aboutInfoIconWrap">
+              <span class="aboutInfoIcon aboutInfoIconEducation" aria-hidden="true">
+                <FaGraduationCap />
+              </span>
+            </div>
+            <div>
+              <h3 class="aboutInfoTitle">Education</h3>
+              <p class="aboutInfoText">
+                {education}
+              </p>
+            </div>
+          </article>
+
+          <article class="aboutInfoCard aboutInfoCardTech">
+            <div class="aboutInfoIconWrap">
+              <span class="aboutInfoIcon aboutInfoIconTech" aria-hidden="true">
+                <FaCode />
+              </span>
+            </div>
+            <div>
+              <h3 class="aboutInfoTitle">Technical Expertise</h3>
+              <p class="aboutInfoText">
+                {techExpertise}
+              </p>
+            </div>
+          </article>
+
+          <article class="aboutInfoCard aboutInfoCardMission">
+            <div class="aboutInfoIconWrap">
+              <span class="aboutInfoIcon aboutInfoIconMission" aria-hidden="true">
+                <FaBullseye />
+              </span>
+            </div>
+            <div class="aboutMissionContent">
+              <h3 class="aboutInfoTitle">Mission</h3>
+              <p class="aboutInfoText">
+                {summary}
+              </p>
+              <a class="aboutResumeButton" href={resumeHref}>
+                <span class="aboutResumeIcon" aria-hidden="true">
+                  <FaFileDownload />
+                </span>
+                <span>View Resume</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
     </div>
   </section>
 </main>
