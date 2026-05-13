@@ -75,7 +75,7 @@
 
 .projectsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: clamp(16px, 2vw, 24px);
 }
 
@@ -162,7 +162,7 @@
 
 .projectMedia {
   padding: 10px 16px 0 16px;
-  height: clamp(160px, 17vw, 200px);
+  height: clamp(160px, 17vw, 220px);
   display: grid;
   justify-items: center;
   align-items: start;
@@ -376,15 +376,20 @@ object.projectImage {
   }
 
   .projectMedia {
-    margin-bottom: 10px;
+    height: auto;
+    margin-bottom: 14px;
   }
 
-  .projectCategories {
-    padding: 40px 0 0;
+  img.projectImage {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: none;
   }
+
 }
 
-@media (max-width: 420px) {
+@media (max-width: 430px) {
   .projectsTitle {
     font-size: clamp(1.68rem, 10vw, 2.3rem);
   }
@@ -410,12 +415,12 @@ object.projectImage {
 
   .projectMedia {
     padding: 8px 11px 0;
-    height: clamp(140px, 42vw, 210px);
-    margin-bottom: 12px;
+    height: auto;
+    margin-bottom: 14px;
   }
 
   img.projectImage {
-    max-height: 100%;
+    max-height: none;
   }
 
   object.projectImage {
