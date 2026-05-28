@@ -373,6 +373,8 @@
   object-fit: cover;
   object-position: center 20%;
   transform: scale(1);
+  will-change: transform;
+  backface-visibility: hidden;
   transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -386,7 +388,7 @@
 }
 
 .aboutProfileCard:hover .aboutProfileImage {
-  transform: scale(1.045);
+  transform: scale(1.02);
 }
 
 .aboutProfileContent {
@@ -877,6 +879,13 @@ img.featuredProjectImage {
 }
 
 /* responsive functionality */
+@media (min-width: 901px) {
+  .aboutProfileCard {
+    min-height: 0;
+    aspect-ratio: 2 / 3;
+  }
+}
+
 @media (max-width: 900px) {
   .aboutGrid {
     grid-template-columns: 1fr;
