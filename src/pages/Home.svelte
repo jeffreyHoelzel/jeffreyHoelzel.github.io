@@ -31,7 +31,7 @@
   const techExpertise =
     "Experience with full-stack development, applied AI/ML, APIs, and data pipeline engineering.";
   const resumeHref = `${base}/resume/`;
-  const aboutPhoto = `${base}/homepage-about_Jeffrey-Hoelzel_05-2026.jpeg`;
+  const aboutPhoto = `${base}/homepage-about_Jeffrey-Hoelzel_05-2026.jpg`;
   const aboutTags = ["Full-Stack", "AI/ML", "Data Systems"];
   const projectsHref = `${base}/projects/`;
   const MAX_TECHNOLOGY_TAGS = 5;

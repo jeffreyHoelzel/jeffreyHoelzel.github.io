@@ -373,6 +373,8 @@
   object-fit: cover;
   object-position: center 20%;
   transform: scale(1);
+  will-change: transform;
+  backface-visibility: hidden;
   transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -386,7 +388,7 @@
 }
 
 .aboutProfileCard:hover .aboutProfileImage {
-  transform: scale(1.045);
+  transform: scale(1.02);
 }
 
 .aboutProfileContent {
@@ -877,6 +879,13 @@ img.featuredProjectImage {
 }
 
 /* responsive functionality */
+@media (min-width: 901px) {
+  .aboutProfileCard {
+    min-height: 0;
+    aspect-ratio: 2 / 3;
+  }
+}
+
 @media (max-width: 900px) {
   .aboutGrid {
     grid-template-columns: 1fr;
@@ -933,7 +942,8 @@ img.featuredProjectImage {
   }
 
   .heroCodeFrame {
-    padding: 10px 11px 11px;
+    width: min(280px, 100%);
+    padding: 8px 10px 10px;
   }
 
   .heroCodePath {
@@ -941,7 +951,19 @@ img.featuredProjectImage {
   }
 
   .heroCodeTitle {
-    font-size: clamp(0.95rem, 5.3vw, 1.08rem);
+    font-size: 0.8rem;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .codeToken.keyword,
+  .codeToken.semi {
+    display: none;
+  }
+
+  .codeToken.plain {
+    margin-left: 4px;
+    margin-right: 4px;
   }
 
   .roleList {
@@ -1123,7 +1145,15 @@ img.featuredProjectImage {
   }
 
   .featuredProjectMedia {
+    height: auto;
     margin-bottom: 10px;
+  }
+
+  img.featuredProjectImage {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: none;
   }
 
   .aboutProfileCard {
