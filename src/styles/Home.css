@@ -941,41 +941,6 @@ img.featuredProjectImage {
     display: block;
   }
 
-  .heroCodeFrame {
-    width: min(280px, 100%);
-    padding: 8px 10px 10px;
-  }
-
-  .heroCodePath {
-    display: none;
-  }
-
-  .heroCodeTitle {
-    font-size: 0.8rem;
-    line-height: 1.2;
-    white-space: nowrap;
-  }
-
-  .codeToken.keyword,
-  .codeToken.semi {
-    display: none;
-  }
-
-  .codeToken.plain {
-    margin-left: 4px;
-    margin-right: 4px;
-  }
-
-  .roleList {
-    gap: 6px;
-    row-gap: 8px;
-  }
-
-  .rolePill {
-    padding: 6px 9px;
-    font-size: 0.7rem;
-  }
-
   .scrollCue {
     min-width: 52px;
     padding-inline: 8px;
@@ -1245,6 +1210,43 @@ img.featuredProjectImage {
     height: 14px;
     flex: 0 0 14px;
     display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroCodeFrame {
+    width: min(360px, 100%);
+    padding: 9px 10px 10px;
+  }
+
+  .heroCodePath {
+    display: none;
+  }
+
+  .heroCodeTitle {
+    font-size: clamp(0.82rem, 3.7vw, 1.02rem);
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+
+  .codeToken.keyword,
+  .codeToken.semi {
+    display: none;
+  }
+
+  .codeToken.plain {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+
+  .roleList {
+    gap: 6px;
+    row-gap: 8px;
+  }
+
+  .rolePill {
+    padding: 6px 9px;
+    font-size: 0.7rem;
   }
 }
 
