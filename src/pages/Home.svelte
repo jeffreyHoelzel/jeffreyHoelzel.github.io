@@ -15,16 +15,18 @@
 
   // manually change if necessary
   const intro = "Hello, I'm";
-  const name = "Jeffrey Hoelzel Jr.";
-  const roleTitles = ["Full-Stack Engineer", "AI/ML Engineer", "Data Engineer"];
+  const fullName = "Jeffrey Hoelzel Jr.";
+  const name = "Jeff";
+  const roleTitles = ["AI/ML Engineer", "Full-Stack Engineer", "Data Engineer"];
   let activeRoleIndex = 0;
   let typedRole = roleTitles[0];
 
   const summary = `
-    I am a Software Engineer with experience across machine learning, data
-    systems, and full-stack development. I focus on building practical AI
-    products that combine strong engineering fundamentals with measurable
-    real-world impact.
+    I'm a Software Engineer focused on building practical, dependable technology
+    that solves real problems. At VIAVI Solutions, I contribute to full-stack
+    applications, MCPs, developer tools, and AI agents—combining strong
+    engineering fundamentals with an interest in creating useful, measurable
+    outcomes.
   `.trim();
   const education =
     "Recently earned a B.S. in Software Engineering from Northern Arizona University.";
@@ -32,7 +34,7 @@
     "Experience with full-stack development, applied AI/ML, APIs, and data pipeline engineering.";
   const resumeHref = `${base}/resume/`;
   const aboutPhoto = `${base}/homepage-about_Jeffrey-Hoelzel_05-2026.jpg`;
-  const aboutTags = ["Full-Stack", "AI/ML", "Data Systems"];
+  const aboutTags = ["AI/ML", "Full-Stack", "Data Systems"];
   const projectsHref = `${base}/projects/`;
   const MAX_TECHNOLOGY_TAGS = 5;
 
@@ -163,7 +165,9 @@
         <span class="aboutEyebrow">Learn more</span>
         <h2 class="aboutTitle">About Me</h2>
         <p class="aboutSubtitle">
-          Currently building reliable, high-impact software
+          Currently building reliable, high-impact software at VIAVI Solutions,
+          with a focus on full-stack engineering, MCP development, developer
+          tools, and AI agents.
         </p>
       </div>
 
@@ -177,8 +181,8 @@
             />
           </div>
           <div class="aboutProfileContent">
-            <h3 class="aboutProfileName">{name}</h3>
-            <p class="aboutProfileRole">Software, AI/ML, and Data Engineer</p>
+            <h3 class="aboutProfileName">{fullName}</h3>
+            <p class="aboutProfileRole">AI/ML, Software, and Data Engineer</p>
             <div class="aboutTagList" aria-label="Core focus areas">
               {#each aboutTags as tag}
                 <span class="aboutTag">{tag}</span>

@@ -44,8 +44,8 @@
       <section class="footerColumn">
         <h3 class="footerHeading">About</h3>
         <p class="footerAboutText">
-          A passionate software engineer focused on practical AI, full-stack
-          systems, and meaningful user experiences.
+          A Software Engineer at VIAVI Solutions focused on full-stack
+          applications, MCP development, developer tools, and AI agents.
         </p>
       </section>
 
