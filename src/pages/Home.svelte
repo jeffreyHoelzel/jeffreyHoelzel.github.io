@@ -56,7 +56,7 @@
     });
 
   const scrollToAbout = () => {
-    document.getElementById("about")?.scrollIntoView({
+    document.querySelector(".aboutTitle")?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
@@ -128,8 +128,9 @@
             <span class="codeToken keyword">const </span><span
               class="codeToken variable">role</span
             ><span class="codeToken plain">=</span><span
-              class="codeToken string">"{typedRole}"</span
-            ><span class="typingCaret" aria-hidden="true"></span><span
+              class="codeToken string">"{typedRole}<span
+                class="typingCaret" aria-hidden="true"></span>"</span
+            ><span
               class="codeToken semi">;</span
             >
           </p>
@@ -232,18 +233,18 @@
                 <FaBullseye />
               </span>
             </div>
-            <div class="aboutMissionContent">
+            <div>
               <h3 class="aboutInfoTitle">Mission</h3>
               <p class="aboutInfoText">
                 {summary}
               </p>
-              <a class="aboutResumeButton" href={resumeHref}>
-                <span class="aboutResumeIcon" aria-hidden="true">
-                  <FaFileDownload />
-                </span>
-                <span>View Resume</span>
-              </a>
             </div>
+            <a class="aboutResumeButton" href={resumeHref}>
+              <span class="aboutResumeIcon" aria-hidden="true">
+                <FaFileDownload />
+              </span>
+              <span>View Resume</span>
+            </a>
           </article>
         </div>
       </div>

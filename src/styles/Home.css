@@ -144,7 +144,7 @@
 
 .typingCaret {
   display: inline-block;
-  width: 0.45ch;
+  width: 0;
   height: 1.05em;
   border-left: 2px solid var(--accent);
   margin-left: 0;
@@ -325,6 +325,7 @@
 }
 
 .aboutTitle {
+  scroll-margin-top: calc(var(--header-h) + 4px);
   margin: 14px 0 10px 0;
   font-size: clamp(2rem, 5vw, 4rem);
   letter-spacing: 0.02em;
@@ -432,6 +433,7 @@
 
 .aboutCards {
   display: grid;
+  align-content: start;
   gap: 14px;
 }
 
@@ -441,7 +443,7 @@
   gap: 14px;
   border-radius: 14px;
   border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
-  padding: clamp(16px, 2vw, 22px);
+  padding: clamp(16px, 2vw, 20px);
   transition: border-color 0.2s ease, box-shadow 0.22s ease,
     transform 0.22s ease;
 }
@@ -555,7 +557,7 @@
 }
 
 .aboutInfoTitle {
-  margin: 0 0 7px 0;
+  margin: 9px 0 7px;
   font-size: clamp(1.1rem, 1.6vw, 1.36rem);
   line-height: 1.14;
 }
@@ -567,12 +569,8 @@
   line-height: 1.58;
 }
 
-.aboutMissionContent {
-  display: grid;
-  gap: 14px;
-}
-
 .aboutResumeButton {
+  grid-column: 1 / -1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -882,7 +880,16 @@ img.featuredProjectImage {
 @media (min-width: 901px) {
   .aboutProfileCard {
     min-height: 0;
+    height: 100%;
     aspect-ratio: 2 / 3;
+  }
+
+  .aboutCards {
+    align-content: stretch;
+  }
+
+  .aboutInfoCard {
+    align-content: center;
   }
 }
 
@@ -1001,8 +1008,8 @@ img.featuredProjectImage {
     height: 16px;
   }
 
-  .aboutMissionContent {
-    gap: 10px;
+  .aboutInfoTitle {
+    margin-top: 6px;
   }
 
   .aboutInfoText {
